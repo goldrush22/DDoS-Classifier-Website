@@ -1,3 +1,0 @@
-timestamp,event_type,cost_before,cost_after,billable_amount,service
-1700004001,autoscale_out,12.00,34.80,22.80,api_gateway_plus_compute
-1700004002,managed_service_charge,34.80,57.60,22.80,vector_retrieval

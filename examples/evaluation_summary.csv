@@ -1,6 +1,0 @@
-scenario,expected_classification,dact_primary_classification,observed_conditions,correct
-S12_Recursive_DoA,Recursive_DoA,Recursive_DoA,C0;C1;C3;C6,Yes
-S13_Serverless_DoA,Serverless_DoA,Serverless_DoA,C0;C1;C4;C5;C6,Yes
-S2_DDoS,DDoS,DDoS,C0;C2,Yes
-S7_DoW,DoW,DoW,C0;C1;C4;C5,Yes
-S9_DoA,DoA,DoA,C0;C6,Yes

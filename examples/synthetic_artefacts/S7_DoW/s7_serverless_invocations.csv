@@ -1,2 +1,0 @@
-timestamp,function,invocations,duration_ms,memory_mb,chained_events
-1700001003,payment_quote_handler,480,84000,512,18
