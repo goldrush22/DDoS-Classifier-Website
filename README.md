@@ -1,5 +1,5 @@
 # DDoS-Classifier-Website
-# D-ACT Static Web Interface
+# Denial Attack Classifier Tool (D-ACT) Static Web Interface
 
 This repository contains a static browser version of the D-ACT Denial Attack Classification Tool. It can be uploaded to a public web repository and hosted as a static website, including GitHub Pages, Netlify, Vercel static hosting, Cloudflare Pages, or an ordinary web server.
 
