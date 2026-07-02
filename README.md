@@ -114,15 +114,3 @@ The validation produces `STATIC_VALIDATION_RESULTS.json`. The validated outputs 
 | S9_DoA | DoA | DoA |
 | S12_Recursive_DoA | Recursive_DoA | Recursive_DoA |
 | S13_Serverless_DoA | Serverless_DoA | Serverless_DoA |
-
-## Deployment to GitHub Pages
-
-1. Create a new GitHub repository.
-2. Upload all files in this directory.
-3. Go to **Settings → Pages**.
-4. Select deployment from the `main` branch root.
-5. Save and open the generated GitHub Pages URL.
-
-## Recommended paper wording
-
-The D-ACT static web interface is a client-side research artefact that operationalises the C0-C6 taxonomy in a browser. It accepts packet captures and structured logs as evidence, infers the relevant taxonomy conditions, visually marks identified and absent conditions, and returns an explainable denial attack classification. The artefact is suitable for supplementary material because it allows readers and reviewers to reproduce the classification workflow without installing a backend service.
