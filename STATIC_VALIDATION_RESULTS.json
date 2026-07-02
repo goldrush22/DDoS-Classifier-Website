@@ -1,0 +1,37 @@
+[
+  {
+    "scenario": "S2_DDoS",
+    "expected": "DDoS",
+    "actual": "DDoS",
+    "conditions": "C0;C2",
+    "pass": true
+  },
+  {
+    "scenario": "S7_DoW",
+    "expected": "DoW",
+    "actual": "DoW",
+    "conditions": "C0;C1;C4;C5",
+    "pass": true
+  },
+  {
+    "scenario": "S9_DoA",
+    "expected": "DoA",
+    "actual": "DoA",
+    "conditions": "C0;C6",
+    "pass": true
+  },
+  {
+    "scenario": "S12_Recursive_DoA",
+    "expected": "Recursive_DoA",
+    "actual": "Recursive_DoA",
+    "conditions": "C0;C1;C3;C6",
+    "pass": true
+  },
+  {
+    "scenario": "S13_Serverless_DoA",
+    "expected": "Serverless_DoA",
+    "actual": "Serverless_DoA",
+    "conditions": "C0;C1;C4;C5;C6",
+    "pass": true
+  }
+]

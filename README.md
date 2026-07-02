@@ -1,5 +1,4 @@
-# DDoS-Classifier-Website
-# Denial Attack Classifier Tool (D-ACT) Static Web Interface
+# D-ACT Static Web Interface
 
 This repository contains a static browser version of the D-ACT Denial Attack Classification Tool. It can be uploaded to a public web repository and hosted as a static website, including GitHub Pages, Netlify, Vercel static hosting, Cloudflare Pages, or an ordinary web server.
 
@@ -114,3 +113,49 @@ The validation produces `STATIC_VALIDATION_RESULTS.json`. The validated outputs 
 | S9_DoA | DoA | DoA |
 | S12_Recursive_DoA | Recursive_DoA | Recursive_DoA |
 | S13_Serverless_DoA | Serverless_DoA | Serverless_DoA |
+
+## Deployment to GitHub Pages
+
+1. Create a new GitHub repository.
+2. Upload all files in this directory.
+3. Go to **Settings → Pages**.
+4. Select deployment from the `main` branch root.
+5. Save and open the generated GitHub Pages URL.
+
+## Recommended paper wording
+
+The D-ACT static web interface is a client-side research artefact that operationalises the C0-C6 taxonomy in a browser. It accepts packet captures and structured logs as evidence, infers the relevant taxonomy conditions, visually marks identified and absent conditions, and returns an explainable denial attack classification. The artefact is suitable for supplementary material because it allows readers and reviewers to reproduce the classification workflow without installing a backend service.
+
+## Example Use Cases page
+
+This repository now includes a dedicated `examples.html` page for non-technical users and reviewers. The page lists 19 synthetic offline reproducibility examples covering the full D-ACT taxonomy corpus:
+
+- DoS x 2
+- DDoS x 2
+- LDoS x 2
+- LDDoS x 2
+- EDoS_S x 2
+- EDoS_D x 2
+- DoW x 2
+- DDoW x 2
+- DoA x 2
+- Unclassified / no-denial negative control x 1
+
+Each example card includes:
+
+- the expected D-ACT classification;
+- the expected C0-C6 condition set;
+- downloadable input files;
+- downloadable expected and precomputed result files;
+- an in-browser preview button for each file; and
+- a one-click "Run example in browser" button.
+
+PCAP previews show parsed packet metadata rather than raw binary content. CSV, JSON and Markdown files are previewed as text. The examples are stored in `examples/full_taxonomy_corpus/`.
+
+To validate the full static corpus locally, run:
+
+```bash
+node tools/validate_full_corpus_static.js
+```
+
+The validator writes `FULL_CORPUS_STATIC_VALIDATION_RESULTS.json`.

@@ -1,0 +1,135 @@
+[
+  {
+    "scenario": "01_DoS_A",
+    "expected": "DoS",
+    "actual": "DoS",
+    "conditions": "C0;C1",
+    "pass": true
+  },
+  {
+    "scenario": "02_DoS_B",
+    "expected": "DoS",
+    "actual": "DoS",
+    "conditions": "C0;C1",
+    "pass": true
+  },
+  {
+    "scenario": "03_DDoS_A",
+    "expected": "DDoS",
+    "actual": "DDoS",
+    "conditions": "C0;C2",
+    "pass": true
+  },
+  {
+    "scenario": "04_DDoS_B",
+    "expected": "DDoS",
+    "actual": "DDoS",
+    "conditions": "C0;C2",
+    "pass": true
+  },
+  {
+    "scenario": "05_LDoS_A",
+    "expected": "LDoS",
+    "actual": "LDoS",
+    "conditions": "C0;C1;C3",
+    "pass": true
+  },
+  {
+    "scenario": "06_LDoS_B",
+    "expected": "LDoS",
+    "actual": "LDoS",
+    "conditions": "C0;C1;C3",
+    "pass": true
+  },
+  {
+    "scenario": "07_LDDoS_A",
+    "expected": "LDDoS",
+    "actual": "LDDoS",
+    "conditions": "C0;C2;C3",
+    "pass": true
+  },
+  {
+    "scenario": "08_LDDoS_B",
+    "expected": "LDDoS",
+    "actual": "LDDoS",
+    "conditions": "C0;C2;C3",
+    "pass": true
+  },
+  {
+    "scenario": "09_EDoS_S_A",
+    "expected": "EDoS_S",
+    "actual": "EDoS_S",
+    "conditions": "C0;C1;C4",
+    "pass": true
+  },
+  {
+    "scenario": "10_EDoS_S_B",
+    "expected": "EDoS_S",
+    "actual": "EDoS_S",
+    "conditions": "C0;C1;C4",
+    "pass": true
+  },
+  {
+    "scenario": "11_EDoS_D_A",
+    "expected": "EDoS_D",
+    "actual": "EDoS_D",
+    "conditions": "C0;C2;C4",
+    "pass": true
+  },
+  {
+    "scenario": "12_EDoS_D_B",
+    "expected": "EDoS_D",
+    "actual": "EDoS_D",
+    "conditions": "C0;C2;C4",
+    "pass": true
+  },
+  {
+    "scenario": "13_DoW_A",
+    "expected": "DoW",
+    "actual": "DoW",
+    "conditions": "C0;C1;C4;C5",
+    "pass": true
+  },
+  {
+    "scenario": "14_DoW_B",
+    "expected": "DoW",
+    "actual": "DoW",
+    "conditions": "C0;C1;C4;C5",
+    "pass": true
+  },
+  {
+    "scenario": "15_DDoW_A",
+    "expected": "DDoW",
+    "actual": "DDoW",
+    "conditions": "C0;C2;C4;C5",
+    "pass": true
+  },
+  {
+    "scenario": "16_DDoW_B",
+    "expected": "DDoW",
+    "actual": "DDoW",
+    "conditions": "C0;C2;C4;C5",
+    "pass": true
+  },
+  {
+    "scenario": "17_DoA_A",
+    "expected": "DoA",
+    "actual": "DoA",
+    "conditions": "C0;C6",
+    "pass": true
+  },
+  {
+    "scenario": "18_DoA_B",
+    "expected": "DoA",
+    "actual": "DoA",
+    "conditions": "C0;C6",
+    "pass": true
+  },
+  {
+    "scenario": "19_No_Denial_Negative_Control",
+    "expected": "Unclassified",
+    "actual": "Unclassified",
+    "conditions": "",
+    "pass": true
+  }
+]

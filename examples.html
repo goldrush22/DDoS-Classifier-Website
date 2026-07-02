@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D-ACT Example Use Cases | Denial Attack Classification Tool</title>
+  <meta name="description" content="Example use cases for the D-ACT C0-C6 denial attack classifier, including downloadable synthetic PCAP and log artefacts.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="assets/dact-core.js" defer></script>
+  <script src="assets/example-corpus.js" defer></script>
+  <script src="assets/example-page.js" defer></script>
+</head>
+<body>
+  <header class="hero hero-compact">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a class="active" href="examples.html">Example Use Cases</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Example Use Cases</h1>
+      <p class="subtitle">A guided, non-technical catalogue of 19 synthetic D-ACT examples. Each example includes the evidence files, expected conditions, downloadable artefacts, a browser preview, and a one-click in-browser run.</p>
+      <div class="badges">
+        <span class="badge">19 reproducibility examples</span>
+        <span class="badge">Download PCAP and logs</span>
+        <span class="badge">Preview before downloading</span>
+        <span class="badge">Run examples in browser</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel example-intro">
+      <div>
+        <h2>How to use these examples</h2>
+        <p>Each card below represents one synthetic offline use case. Select <strong>Run example</strong> to execute the bundled files through the browser version of D-ACT. Select <strong>Preview</strong> beside any file to inspect it before downloading. PCAP previews show parsed packet metadata rather than raw binary content.</p>
+      </div>
+      <div class="notice">
+        These examples are synthetic reproducibility artefacts. They are not live attack traces and do not generate network traffic.
+      </div>
+    </section>
+
+    <section class="panel controls-panel">
+      <h2>Example catalogue</h2>
+      <div class="example-toolbar">
+        <label>
+          Filter by expected class
+          <select id="classFilter">
+            <option value="all">All classes</option>
+          </select>
+        </label>
+        <label>
+          Search examples
+          <input id="exampleSearch" type="search" placeholder="Search DoS, DoW, AI, cloud, serverless...">
+        </label>
+      </div>
+      <div id="exampleGrid" class="example-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="exampleRunPanel" class="panel" hidden>
+      <h2>Selected example result</h2>
+      <div class="grid three">
+        <div class="result-card">
+          <h3>Example</h3>
+          <div id="runScenarioName" class="value">None</div>
+        </div>
+        <div class="result-card">
+          <h3>D-ACT classification</h3>
+          <div id="runPrimaryClass" class="value">Unclassified</div>
+        </div>
+        <div class="result-card">
+          <h3>Expected classification</h3>
+          <div id="runExpectedClass" class="value">None</div>
+        </div>
+      </div>
+
+      <div class="example-condition-strip" id="runConditionStrip" aria-label="Condition result strip"></div>
+
+      <div class="grid two" style="margin-top:1rem;">
+        <div>
+          <h3>Identified conditions</h3>
+          <p id="runIdentified" class="small-value">None</p>
+          <h3>Conditions not identified</h3>
+          <p id="runAbsent" class="small-value">None</p>
+        </div>
+        <div>
+          <h3>Explanation</h3>
+          <p id="runExplanation" class="notice"></p>
+          <h3>Files used</h3>
+          <ul id="runFilesUsed"></ul>
+        </div>
+      </div>
+
+      <h3>Raw D-ACT output</h3>
+      <pre id="runJsonOutput">{}</pre>
+    </section>
+
+    <section id="filePreviewPanel" class="panel" hidden>
+      <div class="preview-header">
+        <div>
+          <h2>File preview</h2>
+          <p id="previewMeta" class="helper">No file selected.</p>
+        </div>
+        <button id="closePreview" class="secondary">Close preview</button>
+      </div>
+      <pre id="previewContent">Select Preview on a file to inspect it here.</pre>
+    </section>
+  </main>
+
+  <footer>
+    D-ACT Example Use Cases — synthetic offline reproducibility artefacts for the C0-C6 denial taxonomy.
+  </footer>
+</body>
+</html>
