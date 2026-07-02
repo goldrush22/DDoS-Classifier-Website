@@ -1,0 +1,2 @@
+timestamp,account_id,model,model_calls,input_tokens,output_tokens,context_tokens,tool_calls,agent_iterations,modality
+1700003000,agent_runner_007,synthetic-agent-model,90,62000,41000,28000,36,31,text

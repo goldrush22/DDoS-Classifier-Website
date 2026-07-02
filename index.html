@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D-ACT Browser Classifier | Denial Attack Classification Tool</title>
+  <meta name="description" content="Static browser interface for the D-ACT C0-C6 denial attack classifier.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- Optional Excel support. CSV, JSON and classic PCAP files are parsed without dependencies. -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="assets/dact-core.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>D-ACT Browser Classifier</h1>
+      <p class="subtitle">A static, client-side web interface for the C0-C6 Denial Attack Classification Tool. Upload PCAP, flow, cloud, serverless and AI usage artefacts, then inspect the inferred conditions and taxonomy classification.</p>
+      <div class="badges">
+        <span class="badge">Client-side only</span>
+        <span class="badge">No server required</span>
+        <span class="badge">PCAP / CSV / JSON / XLSX</span>
+        <span class="badge">C0-C6 taxonomy visualisation</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>1. Upload evidence files</h2>
+      <p class="helper">Files are processed locally in the browser. They are not uploaded to a remote server by this static implementation.</p>
+      <div class="notice">
+        Use classic Ethernet/IPv4 <code>.pcap</code> files. If your capture is <code>.pcapng</code>, convert it with <code>editcap -F pcap input.pcapng output.pcap</code> before use.
+      </div>
+
+      <div class="grid two" style="margin-top:1rem;">
+        <div class="upload-card">
+          <label for="pcapFiles">PCAP files</label>
+          <input id="pcapFiles" type="file" accept=".pcap,.cap" multiple>
+          <div id="pcapList" class="file-summary"></div>
+        </div>
+
+        <div class="upload-card">
+          <label for="flowFiles">Flow or request logs</label>
+          <input id="flowFiles" type="file" accept=".csv,.json,.xlsx,.xls" multiple>
+          <div id="flowList" class="file-summary"></div>
+        </div>
+
+        <div class="upload-card">
+          <label for="cloudFiles">Cloud telemetry or billing logs</label>
+          <input id="cloudFiles" type="file" accept=".csv,.json,.xlsx,.xls" multiple>
+          <div id="cloudList" class="file-summary"></div>
+        </div>
+
+        <div class="upload-card">
+          <label for="serverlessFiles">Serverless invocation logs</label>
+          <input id="serverlessFiles" type="file" accept=".csv,.json,.xlsx,.xls" multiple>
+          <div id="serverlessList" class="file-summary"></div>
+        </div>
+
+        <div class="upload-card">
+          <label for="aiFiles">AI usage logs</label>
+          <input id="aiFiles" type="file" accept=".csv,.json,.xlsx,.xls" multiple>
+          <div id="aiList" class="file-summary"></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="runClassifier">Run D-ACT classifier</button>
+        <button id="clearAll" class="secondary">Clear files</button>
+        <button id="downloadResult" class="secondary" disabled>Download JSON result</button>
+      </div>
+      <div id="status" class="status">Ready.</div>
+    </section>
+
+    <section class="panel">
+      <h2>2. Taxonomy tree visualisation</h2>
+      <p class="helper">Condition nodes turn green when D-ACT identifies the condition and red when the condition is absent. Attack-class nodes are highlighted when selected as the primary or inherited classification.</p>
+
+      <div class="taxonomy-wrap">
+        <div class="taxonomy-tree" aria-label="C0-C6 denial taxonomy tree">
+          <div class="root-row">
+            <div class="node condition neutral" data-condition="C0">C0<small>Denial activity exists</small></div>
+          </div>
+
+          <div class="branch">
+            <div class="branch-title">Single-source lineage</div>
+            <div class="connector"></div>
+            <div class="node condition neutral" data-condition="C1">C1<small>Single source</small></div>
+            <div class="connector"></div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="DoS">DoS<small>{C0,C1}</small></div>
+              <div class="node condition neutral" data-condition="C3">C3<small>Low-rate</small></div>
+              <div class="node condition neutral" data-condition="C4">C4<small>Cloud-targeted</small></div>
+            </div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="LDoS">LDoS<small>{C0,C1,C3}</small></div>
+              <div class="node attack class-inactive" data-class="EDoS_S">EDoS<sub>S</sub><small>{C0,C1,C4}</small></div>
+            </div>
+            <div class="connector"></div>
+            <div class="node condition neutral" data-condition="C5">C5<small>Serverless-targeted</small></div>
+            <div class="connector"></div>
+            <div class="node attack class-inactive" data-class="DoW">DoW<small>{C0,C1,C4,C5}</small></div>
+          </div>
+
+          <div class="branch">
+            <div class="branch-title">AI-targeted extension</div>
+            <div class="connector"></div>
+            <div class="node condition neutral" data-condition="C6">C6<small>AI-targeted</small></div>
+            <div class="connector"></div>
+            <div class="node attack class-inactive" data-class="DoA">DoA<small>{C0,C6}</small></div>
+            <div class="connector"></div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="Internal_or_Single_Source_DoA">Single-source DoA</div>
+              <div class="node attack class-inactive" data-class="Distributed_DoA">Distributed DoA</div>
+            </div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="Low_Rate_DoA">Low-rate DoA</div>
+              <div class="node attack class-inactive" data-class="Low_Rate_Distributed_DoA">Low-rate D-DoA</div>
+              <div class="node attack class-inactive" data-class="Recursive_DoA">Recursive DoA</div>
+            </div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="Cloud_Hosted_DoA">Cloud-hosted DoA</div>
+              <div class="node attack class-inactive" data-class="Serverless_DoA">Serverless DoA</div>
+              <div class="node attack class-inactive" data-class="Distributed_Serverless_DoA">Distributed serverless DoA</div>
+            </div>
+          </div>
+
+          <div class="branch">
+            <div class="branch-title">Distributed lineage</div>
+            <div class="connector"></div>
+            <div class="node condition neutral" data-condition="C2">C2<small>Multiple sources</small></div>
+            <div class="connector"></div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="DDoS">DDoS<small>{C0,C2}</small></div>
+              <div class="node condition neutral" data-condition="C3">C3<small>Low-rate</small></div>
+              <div class="node condition neutral" data-condition="C4">C4<small>Cloud-targeted</small></div>
+            </div>
+            <div class="horizontal">
+              <div class="node attack class-inactive" data-class="LDDoS">LDDoS<small>{C0,C2,C3}</small></div>
+              <div class="node attack class-inactive" data-class="EDoS_D">EDoS<sub>D</sub><small>{C0,C2,C4}</small></div>
+            </div>
+            <div class="connector"></div>
+            <div class="node condition neutral" data-condition="C5">C5<small>Serverless-targeted</small></div>
+            <div class="connector"></div>
+            <div class="node attack class-inactive" data-class="DDoW">DDoW<small>{C0,C2,C4,C5}</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultsPanel" class="panel" hidden>
+      <h2>3. D-ACT output</h2>
+      <div class="grid three">
+        <div class="result-card">
+          <h3>Educated classification</h3>
+          <div id="primaryClassification" class="value">Unclassified</div>
+        </div>
+        <div class="result-card">
+          <h3>Identified conditions</h3>
+          <div id="identifiedConditions" class="small-value">None</div>
+        </div>
+        <div class="result-card">
+          <h3>Conditions not identified</h3>
+          <div id="absentConditions" class="small-value">None</div>
+        </div>
+      </div>
+
+      <div class="grid two" style="margin-top:1rem;">
+        <div>
+          <h3>Condition status</h3>
+          <ul id="conditionList" class="conditions-list"></ul>
+        </div>
+        <div>
+          <h3>Explanation</h3>
+          <p id="explanation" class="notice"></p>
+          <h3>Inherited or secondary classes</h3>
+          <p id="secondaryClasses" class="small-value"></p>
+          <h3>Parse notes</h3>
+          <ul id="parseNotes"></ul>
+        </div>
+      </div>
+
+      <h3>Extracted features</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Value</th></tr></thead>
+          <tbody id="featureTableBody"></tbody>
+        </table>
+      </div>
+
+      <h3>Raw JSON output</h3>
+      <pre id="jsonOutput">{}</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Repository notes</h2>
+      <p>This website is designed for static hosting. Upload <code>index.html</code>, <code>assets/</code>, and optionally <code>examples/</code> to a public repository. The classifier runs in the browser and mirrors the D-ACT proof-of-concept thresholds used in the paper.</p>
+      <p>PCAP-only analysis can infer <code>C0</code>, <code>C1</code>, <code>C2</code>, and <code>C3</code>. Cloud logs are required for <code>C4</code>, serverless logs for <code>C5</code>, and AI usage logs for <code>C6</code>.</p>
+    </section>
+  </main>
+
+  <footer>
+    D-ACT Browser Classifier — static proof-of-concept research artefact for denial attack classification.
+  </footer>
+</body>
+</html>

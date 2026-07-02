@@ -1,0 +1,50 @@
+{
+  "tool": "D-ACT",
+  "observed_conditions": [
+    "C0",
+    "C1",
+    "C4",
+    "C5",
+    "C6"
+  ],
+  "primary_classification": "Serverless_DoA",
+  "inherited_or_secondary_classes": [
+    "DoW",
+    "Internal_or_Single_Source_DoA",
+    "EDoS_S",
+    "Cloud_Hosted_DoA",
+    "DoS",
+    "DoA"
+  ],
+  "features": {
+    "traffic_events": 90,
+    "unique_sources": 1,
+    "dominant_source_ratio": 1.0,
+    "duration_seconds": 6.559000015258789,
+    "events_per_second": 13.721603871112203,
+    "periodicity_cv": 0.37914237444997323,
+    "cloud_scale_events": 1,
+    "cloud_max_cost_ratio": 2.9,
+    "cloud_chargeable_events": 2,
+    "serverless_invocations": 620,
+    "serverless_total_duration_ms": 126000.0,
+    "serverless_max_memory_mb": 1024.0,
+    "serverless_chained_events": 57,
+    "ai_input_tokens": 118000,
+    "ai_output_tokens": 74000,
+    "ai_total_tokens": 192000,
+    "ai_model_calls": 240,
+    "ai_tool_calls": 52,
+    "ai_agent_iterations": 12,
+    "ai_max_context_tokens": 48000,
+    "ai_multimodal_events": 1
+  },
+  "condition_evidence": {
+    "C0": "Anomalous, repeated, or uncontrolled request/resource activity observed.",
+    "C1": "One dominant source, account, client, process, or API key observed.",
+    "C4": "Cloud scaling, elastic allocation, or chargeable cloud consumption observed.",
+    "C5": "Serverless invocation, execution duration, or event chaining observed.",
+    "C6": "AI inference, token, context, tool, multimodal, or agentic consumption observed."
+  },
+  "explanation": "Serverless_DoA inferred from conditions ['C0', 'C1', 'C4', 'C5', 'C6']. Evidence: C0: Anomalous, repeated, or uncontrolled request/resource activity observed. | C1: One dominant source, account, client, process, or API key observed. | C4: Cloud scaling, elastic allocation, or chargeable cloud consumption observed. | C5: Serverless invocation, execution duration, or event chaining observed. | C6: AI inference, token, context, tool, multimodal, or agentic consumption observed."
+}
