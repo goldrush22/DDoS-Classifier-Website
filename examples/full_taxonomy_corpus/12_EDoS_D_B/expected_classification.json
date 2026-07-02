@@ -1,0 +1,14 @@
+{
+  "scenario": "12_EDoS_D_B",
+  "primary_classification": "EDoS_D",
+  "observed_conditions": [
+    "C0",
+    "C2",
+    "C4"
+  ],
+  "input_files": [
+    "edos_d_b_distributed_cloud.pcap",
+    "edos_d_b_cloud_billing.csv"
+  ],
+  "explanation_expected_for_negative_control": null
+}

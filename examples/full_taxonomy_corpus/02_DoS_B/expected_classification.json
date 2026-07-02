@@ -1,0 +1,12 @@
+{
+  "scenario": "02_DoS_B",
+  "primary_classification": "DoS",
+  "observed_conditions": [
+    "C0",
+    "C1"
+  ],
+  "input_files": [
+    "dos_b_single_source_high_rate.pcap"
+  ],
+  "explanation_expected_for_negative_control": null
+}

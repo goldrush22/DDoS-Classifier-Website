@@ -1,0 +1,2 @@
+timestamp,account_id,model,model_calls,input_tokens,output_tokens,context_tokens,tool_calls,agent_iterations,modality
+1700002000,research_key_001,synthetic-reasoning-model,140,86000,52000,32000,0,0,text

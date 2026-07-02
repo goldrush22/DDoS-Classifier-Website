@@ -1,0 +1,2 @@
+timestamp,workspace,model,input_tokens,output_tokens,model_calls,tool_calls,agent_iterations,context_tokens,modality
+2026-07-02T10:10:00Z,dact-ai-workspace-doa_A,synthetic-llm-eval-model,72000,31000,120,0,0,72000,text

@@ -1,0 +1,16 @@
+{
+  "scenario": "16_DDoW_B",
+  "primary_classification": "DDoW",
+  "observed_conditions": [
+    "C0",
+    "C2",
+    "C4",
+    "C5"
+  ],
+  "input_files": [
+    "ddow_b_distributed_serverless.pcap",
+    "ddow_b_cloud_billing.csv",
+    "ddow_b_serverless_invocations.csv"
+  ],
+  "explanation_expected_for_negative_control": null
+}

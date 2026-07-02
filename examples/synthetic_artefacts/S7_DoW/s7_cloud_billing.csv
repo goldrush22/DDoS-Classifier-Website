@@ -1,0 +1,3 @@
+timestamp,event_type,cost_before,cost_after,billable_amount,service
+1700001001,autoscale_out,10.00,24.50,14.50,managed_api_gateway
+1700001002,autoscale_out,24.50,38.00,13.50,managed_compute

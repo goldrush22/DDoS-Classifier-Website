@@ -1,0 +1,13 @@
+{
+  "scenario": "05_LDoS_A",
+  "primary_classification": "LDoS",
+  "observed_conditions": [
+    "C0",
+    "C1",
+    "C3"
+  ],
+  "input_files": [
+    "ldos_a_single_source_periodic_low_rate.pcap"
+  ],
+  "explanation_expected_for_negative_control": null
+}

@@ -1,0 +1,4 @@
+timestamp,event_type,service,baseline_cost,current_cost,cost,resource
+2026-07-02T10:00:00Z,autoscale_out,compute,20,52,5.5,cloud-resource-edos_d_B-1
+2026-07-02T10:01:00Z,autoscale_out,compute,20,52,6.1,cloud-resource-edos_d_B-2
+2026-07-02T10:02:00Z,autoscale_out,compute,20,52,7.0,cloud-resource-edos_d_B-3

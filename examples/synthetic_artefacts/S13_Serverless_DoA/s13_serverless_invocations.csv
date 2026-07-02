@@ -1,0 +1,2 @@
+timestamp,function,invocations,duration_ms,memory_mb,chained_events
+1700004003,rag_orchestrator,620,126000,1024,57

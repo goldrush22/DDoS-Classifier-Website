@@ -1,0 +1,3 @@
+timestamp,event_type,service,baseline_cost,current_cost,cost,resource
+2026-07-02T10:00:00Z,autoscale_out,compute,18,49,4.2,cloud-resource-ddow_B-1
+2026-07-02T10:01:00Z,autoscale_out,compute,18,49,5.3,cloud-resource-ddow_B-2
