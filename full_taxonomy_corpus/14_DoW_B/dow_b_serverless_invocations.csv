@@ -1,0 +1,2 @@
+timestamp,function_name,invocations,duration_ms,memory_mb,chained_events,status
+2026-07-02T10:05:00Z,dact-synthetic-function-dow_B,360,66000,256,3,completed

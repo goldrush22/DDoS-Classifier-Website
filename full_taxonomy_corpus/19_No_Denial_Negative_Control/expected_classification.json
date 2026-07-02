@@ -1,0 +1,9 @@
+{
+  "scenario": "19_No_Denial_Negative_Control",
+  "primary_classification": "Unclassified",
+  "observed_conditions": [],
+  "input_files": [
+    "no_denial_negative_control.pcap"
+  ],
+  "explanation_expected_for_negative_control": "Observed evidence did not satisfy a complete taxonomy rule."
+}

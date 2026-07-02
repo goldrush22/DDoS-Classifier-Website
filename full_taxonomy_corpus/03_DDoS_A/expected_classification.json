@@ -1,0 +1,12 @@
+{
+  "scenario": "03_DDoS_A",
+  "primary_classification": "DDoS",
+  "observed_conditions": [
+    "C0",
+    "C2"
+  ],
+  "input_files": [
+    "ddos_a_distributed_high_rate.pcap"
+  ],
+  "explanation_expected_for_negative_control": null
+}

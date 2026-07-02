@@ -1,0 +1,18 @@
+\subsection{D-ACT Example Use Cases Web Page}
+\label{app:dact_example_use_cases_page}
+
+The static D-ACT web artefact includes a dedicated \texttt{examples.html} page that allows readers to inspect and execute the 19 synthetic reproducibility scenarios without command-line knowledge. The page is linked from the main classifier interface through an \texttt{Example Use Cases} navigation tab. Each example card displays the expected attack classification, the expected \(C_0\)--\(C_6\) condition set, a short plain-language explanation, and the complete set of evidence files used by the scenario.
+
+The page supports downloadable artefacts and browser-based file previews. CSV, JSON, and Markdown files are previewed as text, while PCAP files are previewed as parsed packet metadata, including the number of IPv4 records, unique source count, destination count, duration, and representative packet records. This avoids exposing raw binary content while still allowing the reader to inspect the structure of the packet-capture evidence before downloading it.
+
+Each example also includes a \texttt{Run example in browser} button. When selected, the browser fetches the bundled evidence files, parses them using the same client-side D-ACT core used by the main classifier, and displays the resulting classification. The output panel reports the scenario name, expected classification, D-ACT classification, identified conditions, absent conditions, files used, explanation path, and raw JSON result. This provides a non-technical method for verifying that the browser implementation can reproduce the taxonomy classifications reported in the paper.
+
+The example page includes 18 positive cases and one negative-control case. The positive cases cover two examples each of DoS, DDoS, LDoS, LDDoS, \(\text{EDoS}_{S}\), \(\text{EDoS}_{D}\), DoW, DDoW, and DoA. The negative-control example returns \texttt{Unclassified}, corresponding to the user-facing message that no denial attack was detected from the supplied evidence. This demonstrates that D-ACT does not automatically classify every uploaded artefact as a denial attack.
+
+The static corpus was validated using the supplied Node.js validation script:
+
+\begin{lstlisting}[language=bash]
+node tools/validate_full_corpus_static.js
+\end{lstlisting}
+
+The validation confirmed that all 19 examples produced the expected D-ACT output. The generated validation output is included in \texttt{FULL\_CORPUS\_STATIC\_VALIDATION\_RESULTS.json}.

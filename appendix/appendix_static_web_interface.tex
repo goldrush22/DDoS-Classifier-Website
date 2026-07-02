@@ -1,0 +1,32 @@
+\subsection{Static Web Interface for D-ACT}
+\label{app:dact_static_web_interface}
+
+A static browser-based implementation of the D-ACT proof-of-concept classifier is supplied as a supplementary research artefact. The artefact is designed to be hosted on a public web repository without a backend server. The implementation consists of \texttt{index.html}, \texttt{assets/styles.css}, \texttt{assets/app.js}, and \texttt{assets/dact-core.js}. The core classifier runs entirely in the browser and implements the same condition-inference and most-specific-match logic described in this paper.
+
+The interface accepts evidence files through five input categories: packet captures, flow or request logs, cloud telemetry or billing logs, serverless invocation logs, and AI usage logs. Classic Ethernet/IPv4 \texttt{.pcap} files are parsed directly in JavaScript. Structured logs may be provided as \texttt{.csv}, \texttt{.json}, or Excel files. The uploaded files are processed locally by the browser; the static artefact does not upload evidence files to a remote server.
+
+The web interface provides a visual taxonomy tree covering conditions \(C_0\) to \(C_6\). After the user runs the classifier, each condition node is colour-coded. Conditions inferred from the uploaded evidence are marked green, while absent conditions are marked red. The interface then reports the identified conditions, absent conditions, extracted features, primary denial classification, inherited or secondary classes, explanation path, and raw JSON result. This allows readers to inspect how the classifier moves from uploaded artefacts to taxonomy conditions and then to the final attack classification.
+
+The static artefact includes the same synthetic evaluation scenarios used in the proof-of-concept evaluation: DDoS, DoW, DoA, Recursive DoA, and Serverless DoA. These artefacts are synthetic offline evaluation artefacts and are not live attack traces. Their purpose is reproducibility. They allow readers and reviewers to confirm that the supplied implementation can ingest concrete \texttt{.pcap}, \texttt{.csv}, and \texttt{.json} files and reproduce the classifications reported in this paper.
+
+The interface can be run locally by opening \texttt{index.html} in a browser, or by serving the repository with a simple static server:
+
+\begin{lstlisting}[language=bash]
+python3 -m http.server 8000
+\end{lstlisting}
+
+The website can then be accessed at:
+
+\begin{lstlisting}
+http://127.0.0.1:8000
+\end{lstlisting}
+
+For public deployment, the files may be uploaded to GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any static web server. No Python backend, database, or server-side execution environment is required. The only optional external dependency is SheetJS, which is loaded through a public CDN to support Excel input. CSV, JSON, and PCAP parsing are dependency-free.
+
+The browser implementation was validated against the bundled synthetic artefacts using the supplied validation script:
+
+\begin{lstlisting}[language=bash]
+node tools/validate_static_core.js
+\end{lstlisting}
+
+The validation confirmed that the browser-side classifier reproduced the expected classifications for all bundled scenarios: DDoS, DoW, DoA, Recursive DoA, and Serverless DoA. This static web interface therefore provides an accessible supplementary artefact for reproducing the D-ACT classification workflow and visually inspecting the condition-based taxonomy.

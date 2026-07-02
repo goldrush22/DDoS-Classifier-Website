@@ -1,0 +1,13 @@
+{
+  "scenario": "08_LDDoS_B",
+  "primary_classification": "LDDoS",
+  "observed_conditions": [
+    "C0",
+    "C2",
+    "C3"
+  ],
+  "input_files": [
+    "lddos_b_distributed_periodic_low_rate.pcap"
+  ],
+  "explanation_expected_for_negative_control": null
+}

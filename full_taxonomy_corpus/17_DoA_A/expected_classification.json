@@ -1,0 +1,12 @@
+{
+  "scenario": "17_DoA_A",
+  "primary_classification": "DoA",
+  "observed_conditions": [
+    "C0",
+    "C6"
+  ],
+  "input_files": [
+    "doa_a_ai_usage.csv"
+  ],
+  "explanation_expected_for_negative_control": null
+}
