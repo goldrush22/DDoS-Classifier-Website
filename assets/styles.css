@@ -414,3 +414,60 @@ a.mini {
   .example-card-top { flex-direction: column; align-items: stretch; }
   .file-actions { justify-content: flex-start; }
 }
+
+/* Mitigation strategy UI */
+.strong-notice {
+  border-left-color: #7a5c00;
+  background: #fff8db;
+}
+.mitigation-result {
+  margin: 1.2rem 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  background: linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+}
+.mitigation-result h4,
+.mitigation-card h4 {
+  margin: 0.2rem 0 0.55rem;
+  color: #263653;
+}
+.mitigation-result ul,
+.mitigation-card ul {
+  margin-top: 0.35rem;
+  padding-left: 1.15rem;
+}
+.mitigation-result li,
+.mitigation-card li {
+  margin: 0.35rem 0;
+}
+.mitigation-columns {
+  margin: 1rem 0;
+}
+.mitigation-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.mitigation-card {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(12, 24, 45, 0.05);
+}
+.mitigation-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.mitigation-step-grid section {
+  border: 1px solid var(--border);
+  background: #fbfcff;
+  border-radius: 14px;
+  padding: 0.85rem;
+}
+@media (max-width: 980px) {
+  .mitigation-step-grid { grid-template-columns: 1fr; }
+}

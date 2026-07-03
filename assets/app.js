@@ -166,6 +166,30 @@
     });
   }
 
+  function renderMitigation(result) {
+    const panel = $('mitigationResult');
+    if (!panel || typeof DactMitigations === 'undefined') return;
+    const strategy = DactMitigations.getStrategy(result.primary_classification || 'Unclassified');
+    const base = DactMitigations.baseClass(result.primary_classification || 'Unclassified');
+    const heading = strategy.title || `${base} mitigation`;
+
+    $('mitigationSummary').innerHTML = `<strong>${escapeHtml(heading)}:</strong> ${escapeHtml(strategy.summary || '')}`;
+
+    const sections = [
+      ['mitigationImmediate', strategy.immediate || []],
+      ['mitigationTechnical', strategy.technical || []],
+      ['mitigationMonitoring', strategy.monitoring || []]
+    ];
+
+    for (const [id, items] of sections) {
+      const ul = $(id);
+      if (!ul) continue;
+      ul.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+    }
+
+    panel.hidden = false;
+  }
+
   function renderFeatures(features) {
     const tbody = $('featureTableBody');
     tbody.innerHTML = '';
@@ -183,6 +207,7 @@
     renderConditions(result);
     renderAttackClasses(result);
     renderFeatures(result.features);
+    renderMitigation(result);
 
     $('primaryClassification').textContent = result.primary_classification || 'Unclassified';
     $('identifiedConditions').textContent = (result.observed_conditions || []).join(', ') || 'None';
@@ -215,6 +240,8 @@
       el.classList.add('class-inactive');
     });
     $('resultsPanel').hidden = true;
+    const mitigationPanel = $('mitigationResult');
+    if (mitigationPanel) mitigationPanel.hidden = true;
     $('downloadResult').disabled = true;
     setStatus('Ready. Upload evidence files and run the classifier.', 'info');
   }
