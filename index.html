@@ -9,6 +9,7 @@
   <!-- Optional Excel support. CSV, JSON and classic PCAP files are parsed without dependencies. -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
   <script src="assets/dact-core.js" defer></script>
+  <script src="assets/mitigations.js" defer></script>
   <script src="assets/app.js" defer></script>
 </head>
 <body>
@@ -17,15 +18,17 @@
       <nav class="site-nav" aria-label="D-ACT site navigation">
         <a class="active" href="index.html">Classifier</a>
         <a href="examples.html">Example Use Cases</a>
+        <a href="mitigations.html">Denial Attack Mitigation Strategies</a>
         <a href="README.md">Repository README</a>
       </nav>
       <h1>D-ACT Browser Classifier</h1>
-      <p class="subtitle">A static, client-side web interface for the C0-C6 Denial Attack Classification Tool. Upload PCAP, flow, cloud, serverless and AI usage artefacts, then inspect the inferred conditions and taxonomy classification.</p>
+      <p class="subtitle">A static, client-side web interface for classifying existing or suspected denial-attack artefacts using the C0-C6 Denial Attack Classification Tool. Upload PCAP, flow, cloud, serverless and AI usage evidence, then inspect the inferred conditions, taxonomy classification, and suggested mitigation pathway.</p>
       <div class="badges">
         <span class="badge">Client-side only</span>
         <span class="badge">No server required</span>
         <span class="badge">PCAP / CSV / JSON / XLSX</span>
         <span class="badge">C0-C6 taxonomy visualisation</span>
+        <span class="badge">Mitigation guidance</span>
       </div>
     </div>
   </header>
@@ -34,6 +37,9 @@
     <section class="panel">
       <h2>1. Upload evidence files</h2>
       <p class="helper">Files are processed locally in the browser. They are not uploaded to a remote server by this static implementation.</p>
+      <div class="notice strong-notice">
+        <strong>Purpose and assumption:</strong> D-ACT is designed to classify existing or suspected denial-attack evidence files. When a file is uploaded, the tool treats it as candidate denial evidence and attempts to classify it against the C0-C6 taxonomy. If the evidence does not satisfy a complete taxonomy rule, D-ACT returns <code>Unclassified</code> rather than forcing an attack label.
+      </div>
       <div class="notice">
         Use classic Ethernet/IPv4 <code>.pcap</code> files. If your capture is <code>.pcapng</code>, convert it with <code>editcap -F pcap input.pcapng output.pcap</code> before use.
       </div>
@@ -194,13 +200,35 @@
         </table>
       </div>
 
+
+
+      <div id="mitigationResult" class="mitigation-result" hidden>
+        <h3>Suggested mitigation strategy</h3>
+        <p id="mitigationSummary" class="notice"></p>
+        <div class="grid three mitigation-columns">
+          <div>
+            <h4>Immediate triage</h4>
+            <ul id="mitigationImmediate"></ul>
+          </div>
+          <div>
+            <h4>Technical controls</h4>
+            <ul id="mitigationTechnical"></ul>
+          </div>
+          <div>
+            <h4>Monitoring and follow-up</h4>
+            <ul id="mitigationMonitoring"></ul>
+          </div>
+        </div>
+        <a class="button" href="mitigations.html">Read more about denial attack mitigation strategies</a>
+      </div>
+
       <h3>Raw JSON output</h3>
       <pre id="jsonOutput">{}</pre>
     </section>
 
     <section class="panel">
       <h2>Repository notes</h2>
-      <p>This website is designed for static hosting. Upload <code>index.html</code>, <code>assets/</code>, and optionally <code>examples/</code> to a public repository. The classifier runs in the browser and mirrors the D-ACT proof-of-concept thresholds used in the paper.</p>
+      <p>This website is designed for static hosting. Upload <code>index.html</code>, <code>examples.html</code>, <code>mitigations.html</code>, <code>assets/</code>, and optionally <code>examples/</code> to a public repository. The classifier runs in the browser and mirrors the D-ACT proof-of-concept thresholds used in the paper.</p>
       <p>PCAP-only analysis can infer <code>C0</code>, <code>C1</code>, <code>C2</code>, and <code>C3</code>. Cloud logs are required for <code>C4</code>, serverless logs for <code>C5</code>, and AI usage logs for <code>C6</code>.</p>
     </section>
   </main>
