@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D-ACT Mitigation Strategies | Denial Attack Classification Tool</title>
+  <meta name="description" content="Mitigation strategies for D-ACT denial attack classifications including DoS, DDoS, LDoS, LDDoS, EDoS, DoW, DDoW and DoA.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/mitigations.js" defer></script>
+  <script src="assets/mitigation-page.js" defer></script>
+</head>
+<body>
+  <header class="hero hero-compact">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a class="active" href="mitigations.html">Denial Attack Mitigation Strategies</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Denial Attack Mitigation Strategies</h1>
+      <p class="subtitle">A practical guide to mitigation pathways for each D-ACT denial attack classification. Use this page after D-ACT identifies a class, or as a reference for designing controls against the C0-C6 denial taxonomy.</p>
+      <div class="badges">
+        <span class="badge">DoS / DDoS</span>
+        <span class="badge">Low-rate denial</span>
+        <span class="badge">EDoS / DoW</span>
+        <span class="badge">DoA and AI-resource exhaustion</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel example-intro">
+      <div>
+        <h2>How to use this page</h2>
+        <p>Each mitigation card corresponds to one D-ACT classification. The guidance is organised into immediate triage, technical controls, and monitoring or follow-up. These strategies are defensive and should be adapted to the affected environment, baseline traffic, cloud provider, serverless platform, and AI provider.</p>
+      </div>
+      <div class="notice">
+        D-ACT classifies existing or suspected denial-attack evidence. Mitigation recommendations are generated from the identified class and should be treated as triage guidance, not as a substitute for incident-response judgement.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Mitigation catalogue</h2>
+      <p class="helper">The catalogue covers the nine primary taxonomy classes used by the D-ACT evaluation corpus, plus the negative-control <code>Unclassified</code> outcome.</p>
+      <div id="mitigationGrid" class="mitigation-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Operational note</h2>
+      <p>D-ACT mitigation guidance is intentionally condition-aware. For example, a DDoS result emphasises distributed ingress protection, while DoW and DDoW results add serverless billing controls. DoA results add AI-specific controls for tokens, model calls, context windows, tool use, multimodal generation, and agentic recursion.</p>
+      <a class="button" href="index.html">Return to the classifier</a>
+    </section>
+  </main>
+
+  <footer>
+    D-ACT Mitigation Strategies — defensive guidance for condition-based denial attack classification.
+  </footer>
+</body>
+</html>
