@@ -1311,3 +1311,233 @@ a.mini {
     font-size: 0.72rem;
   }
 }
+
+/* Advisory pages: readiness, playbook and evidence guide */
+.advisory-hero .subtitle {
+  max-width: 980px;
+}
+.advisory-intro p,
+.readiness-panel p,
+.playbook-builder p,
+.evidence-matrix-panel p {
+  color: #475569;
+  line-height: 1.65;
+}
+.field-label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+.field-label input,
+.field-label select {
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  border-radius: 14px;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  background: #fff;
+  color: #0f172a;
+}
+.questionnaire {
+  display: grid;
+  gap: 1rem;
+}
+.question-card {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 20px;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(241, 245, 249, 0.72));
+}
+.question-card legend {
+  font-weight: 950;
+  color: #0f172a;
+  padding: 0 0.35rem;
+}
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 0.85rem;
+}
+.radio-tile {
+  cursor: pointer;
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 16px;
+  padding: 0.75rem;
+  background: #fff;
+  color: #334155;
+  min-height: 74px;
+}
+.radio-tile:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+.radio-tile input {
+  margin-top: 0.15rem;
+}
+.result-header-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+.score-card {
+  min-width: 190px;
+  border-radius: 24px;
+  padding: 1rem 1.1rem;
+  background: radial-gradient(circle at top left, #dbeafe, #f8fafc 64%);
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  text-align: center;
+}
+.score-card.compact { min-width: 160px; }
+.score-card strong {
+  display: block;
+  font-size: 2rem;
+  color: #1d4ed8;
+}
+.score-card span,
+.score-card small {
+  display: block;
+  color: #475569;
+  font-weight: 800;
+}
+.metric-card,
+.condition-tile,
+.evidence-card,
+.timeline-card,
+.playbook-section {
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
+}
+.metric-card strong {
+  display: block;
+  font-size: 1.45rem;
+  color: #0f172a;
+}
+.metric-card span,
+.condition-tile span {
+  color: #64748b;
+  font-size: 0.92rem;
+}
+.attack-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0.8rem 0 1rem;
+}
+.attack-chip {
+  border-radius: 999px;
+  padding: 0.65rem 0.85rem;
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
+  background: #eff6ff;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #1e3a8a;
+}
+.attack-chip small { color: #475569; }
+.priority-list li,
+.timeline-card li,
+.playbook-section li,
+.evidence-card li {
+  margin: 0.45rem 0;
+  color: #334155;
+  line-height: 1.45;
+}
+.condition-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+.condition-tile strong {
+  display: block;
+  color: #1d4ed8;
+  font-size: 1.15rem;
+}
+.json-small {
+  max-height: 360px;
+  overflow: auto;
+  font-size: 0.82rem;
+}
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.evidence-table-wrap {
+  overflow-x: auto;
+}
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 920px;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+.evidence-table th,
+.evidence-table td {
+  padding: 0.9rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  text-align: left;
+  vertical-align: top;
+}
+.evidence-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 950;
+}
+.evidence-table td {
+  color: #334155;
+}
+.evidence-cards {
+  align-items: stretch;
+}
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.template-grid pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 18px;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+@media (max-width: 1100px) {
+  .option-grid,
+  .timeline-grid,
+  .condition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .option-grid,
+  .timeline-grid,
+  .condition-grid,
+  .template-grid,
+  .result-header-row {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  .score-card { width: 100%; }
+}
+@media print {
+  .questionnaire,
+  .playbook-builder,
+  .advisory-intro,
+  .actions,
+  .site-nav {
+    display: none !important;
+  }
+}
