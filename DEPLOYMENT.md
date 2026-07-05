@@ -62,3 +62,18 @@ Then open:
 ```text
 http://127.0.0.1:8000/examples.html
 ```
+
+
+## Additional advisory pages
+
+The repository root should also include:
+
+```text
+readiness.html
+playbook.html
+evidence.html
+assets/readiness.js
+assets/playbook.js
+```
+
+These files provide the readiness assessment, incident response playbook generator, and evidence/log collection guide.

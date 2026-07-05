@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Incident Response Playbook Generator | D-ACT</title>
+  <meta name="description" content="Generate denial attack response playbooks for small businesses.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/mitigations.js" defer></script>
+  <script src="assets/playbook.js" defer></script>
+</head>
+<body>
+  <header class="hero advisory-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a class="active" href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Incident Response Playbook Generator</h1>
+      <p class="subtitle">Generate a practical response plan for denial incidents. Select the suspected attack type, business context, affected service, and current symptom to produce a staged triage, evidence, mitigation, communication, and recovery checklist.</p>
+      <div class="badges">
+        <span class="badge">First 15 minutes</span>
+        <span class="badge">First hour</span>
+        <span class="badge">First day</span>
+        <span class="badge">Evidence preservation</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="panel playbook-builder">
+      <h2>Generate a playbook</h2>
+      <div class="grid two">
+        <label class="field-label">Business name
+          <input id="pbBusiness" type="text" value="Mary's Cafe" placeholder="Business name">
+        </label>
+        <label class="field-label">Business type
+          <select id="pbBusinessType">
+            <option>Small retail or hospitality business</option>
+            <option>Professional services firm</option>
+            <option>Online store / e-commerce</option>
+            <option>Healthcare or appointment-based service</option>
+            <option>Education / training provider</option>
+            <option>Technology or SaaS provider</option>
+          </select>
+        </label>
+        <label class="field-label">Suspected attack type
+          <select id="pbAttack"></select>
+        </label>
+        <label class="field-label">Critical service affected
+          <input id="pbService" type="text" value="Online ordering website" placeholder="e.g., website, booking system, API, QR menu, AI chatbot">
+        </label>
+        <label class="field-label">Current symptom
+          <select id="pbSymptom">
+            <option value="slow">Service is slow or lagging</option>
+            <option value="offline">Service is offline or intermittently unavailable</option>
+            <option value="bill">Unexpected cloud/serverless/AI bill or spend spike</option>
+            <option value="quota">AI quota, token balance, or API limit exhausted</option>
+            <option value="unknown">Unclear symptom / investigation stage</option>
+          </select>
+        </label>
+        <label class="field-label">Severity
+          <select id="pbSeverity">
+            <option value="low">Low: degraded but usable</option>
+            <option value="medium" selected>Medium: customer impact likely</option>
+            <option value="high">High: service outage or active financial exposure</option>
+            <option value="critical">Critical: business-critical outage or runaway cost</option>
+          </select>
+        </label>
+      </div>
+      <div class="actions">
+        <button id="generatePlaybook" type="button">Generate incident playbook</button>
+        <button id="downloadPlaybook" type="button" class="secondary" disabled>Download JSON</button>
+        <button id="printPlaybook" type="button" class="secondary" disabled>Print / save PDF</button>
+      </div>
+    </section>
+
+    <section id="playbookResult" class="panel playbook-result" hidden>
+      <div class="result-header-row">
+        <div>
+          <h2 id="playbookTitle">Incident response playbook</h2>
+          <p id="playbookIntro" class="helper"></p>
+        </div>
+        <div id="playbookBadge" class="score-card compact"></div>
+      </div>
+      <div class="timeline-grid">
+        <div class="timeline-card"><h3>First 15 minutes</h3><ol id="pbFirst15"></ol></div>
+        <div class="timeline-card"><h3>First hour</h3><ol id="pbFirstHour"></ol></div>
+        <div class="timeline-card"><h3>First day</h3><ol id="pbFirstDay"></ol></div>
+      </div>
+      <div class="grid two">
+        <div class="playbook-section"><h3>Evidence to preserve</h3><ul id="pbEvidence"></ul></div>
+        <div class="playbook-section"><h3>Customer / stakeholder communication</h3><ul id="pbComms"></ul></div>
+      </div>
+      <div class="playbook-section"><h3>Recommended technical controls</h3><ul id="pbControls"></ul></div>
+      <h3>Playbook JSON</h3>
+      <pre id="playbookJson" class="json-small">{}</pre>
+    </section>
+  </main>
+  <footer>D-ACT Incident Response Playbook Generator — educational triage artefact.</footer>
+</body>
+</html>

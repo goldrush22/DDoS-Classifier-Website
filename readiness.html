@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Denial Attack Readiness Assessment | D-ACT</title>
+  <meta name="description" content="Small-business denial attack readiness assessment for D-ACT.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/readiness.js" defer></script>
+</head>
+<body>
+  <header class="hero advisory-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a class="active" href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Denial Attack Readiness Assessment</h1>
+      <p class="subtitle">A practical small-business assessment for DoS, DDoS, low-rate denial, cloud sustainability denial, serverless billing exposure, and AI-resource exhaustion. The result is an educational readiness score and prioritised control plan.</p>
+      <div class="badges">
+        <span class="badge">Small-business focused</span>
+        <span class="badge">C0-C6 mapped</span>
+        <span class="badge">No data upload required</span>
+        <span class="badge">Export JSON / print</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="panel advisory-intro">
+      <h2>How this assessment works</h2>
+      <p>This questionnaire estimates preparedness against denial attacks. It does not scan your systems. It converts business answers into a readiness profile, identifies likely exposure classes, and recommends priority actions.</p>
+      <div class="notice strong-notice"><strong>Use:</strong> complete the questions, generate the assessment, then use the result to prioritise controls or support a business-continuity discussion.</div>
+    </section>
+
+    <section class="panel readiness-panel">
+      <h2>Business profile</h2>
+      <div class="grid two">
+        <label class="field-label">Business name
+          <input id="businessName" type="text" value="Mary's Cafe" placeholder="e.g., Mary's Cafe">
+        </label>
+        <label class="field-label">Main online service
+          <input id="mainService" type="text" value="Online ordering / QR menu" placeholder="e.g., website, booking system, QR menu, AI chatbot">
+        </label>
+      </div>
+    </section>
+
+    <section class="panel readiness-panel">
+      <h2>Readiness questionnaire</h2>
+      <p class="helper">Choose the option that best describes the business today. Higher scores indicate better preparedness.</p>
+      <form id="readinessForm" class="questionnaire"></form>
+      <div class="actions">
+        <button id="generateReadiness" type="button">Generate readiness assessment</button>
+        <button id="resetReadiness" type="button" class="secondary">Reset</button>
+        <button id="downloadReadiness" type="button" class="secondary" disabled>Download JSON report</button>
+        <button id="printReadiness" type="button" class="secondary" disabled>Print / save PDF</button>
+      </div>
+    </section>
+
+    <section id="readinessResult" class="panel readiness-result" hidden>
+      <div class="result-header-row">
+        <div>
+          <h2>Readiness result</h2>
+          <p id="readinessSummary" class="helper"></p>
+        </div>
+        <div id="readinessScoreCard" class="score-card"></div>
+      </div>
+      <div class="grid three" id="readinessMetricCards"></div>
+      <h3>Most exposed denial classes</h3>
+      <div id="exposureChips" class="attack-chip-row"></div>
+      <h3>Priority actions</h3>
+      <ol id="priorityActions" class="priority-list"></ol>
+      <h3>Condition coverage</h3>
+      <div id="conditionCoverage" class="condition-grid"></div>
+      <h3>Assessment JSON</h3>
+      <pre id="readinessJson" class="json-small">{}</pre>
+    </section>
+  </main>
+  <footer>D-ACT Readiness Assessment — educational business advisory artefact.</footer>
+</body>
+</html>

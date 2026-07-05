@@ -190,3 +190,13 @@ The simulator page is intended as an educational and paper-supporting research a
 The Denial Attack Simulator now includes an optional victim financial profile module. Users can enter a business name, a profit amount, and a period limited to Daily, Monthly, or Yearly. Sustainability-oriented simulations (`EDoS_S`, `EDoS_D`, `DoW`, `DDoW`, and `DoA`) then display a running illustrative cost exposure and compare it with the victim's normalised profit per minute.
 
 The default coefficients are interim modelling values stored in `assets/simulator.js` under `FINANCIAL_MODEL`. They are intended for educational visualisation and can be replaced later with empirical research values.
+
+## Advisory pages
+
+This version also includes three small-business advisory pages:
+
+- `readiness.html` — Denial Attack Readiness Assessment
+- `playbook.html` — Incident Response Playbook Generator
+- `evidence.html` — Evidence & Log Collection Guide
+
+These pages are educational and consultative. They do not generate traffic, scan systems, or perform attacks. They help users understand preparedness, response actions, and the evidence required to classify denial events with D-ACT.

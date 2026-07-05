@@ -19,16 +19,22 @@
         <a class="active" href="index.html">Classifier</a>
         <a href="examples.html">Example Use Cases</a>
         <a href="simulator.html">Denial Attack Simulator</a>
-        <a href="mitigations.html">Denial Attack Mitigation Strategies</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
       </nav>
       <h1>D-ACT Browser Classifier</h1>
-      <p class="subtitle">This is work based on Mark Dorsett's PhD. <a href="https://scholar.google.com/citations?user=xMVmjVYAAAAJ&hl=en&oi=sra" target="_blank"> View his Academic work here. </a> A static, client-side web interface for classifying existing or suspected denial-attack artefacts using the C0-C6 Denial Attack Classification Tool. Upload PCAP, flow, cloud, serverless and AI usage evidence, then inspect the inferred conditions, taxonomy classification, and suggested mitigation pathway.</p>
+      <p class="subtitle">A static, client-side web interface for classifying existing or suspected denial-attack artefacts using the C0-C6 Denial Attack Classification Tool. Upload PCAP, flow, cloud, serverless and AI usage evidence, then inspect the inferred conditions, taxonomy classification, and suggested mitigation pathway.</p>
       <div class="badges">
         <span class="badge">Client-side only</span>
         <span class="badge">No server required</span>
         <span class="badge">PCAP / CSV / JSON / XLSX</span>
         <span class="badge">C0-C6 taxonomy visualisation</span>
         <span class="badge">Mitigation guidance</span>
+        <span class="badge">Readiness assessment</span>
+        <span class="badge">Incident playbooks</span>
       </div>
     </div>
   </header>
@@ -228,7 +234,7 @@
 
     <section class="panel">
       <h2>Repository notes</h2>
-      <p>This website is designed for static hosting. Upload <code>index.html</code>, <code>examples.html</code>, <code>mitigations.html</code>, <code>assets/</code>, and optionally <code>examples/</code> to a public repository. The classifier runs in the browser and mirrors the D-ACT proof-of-concept thresholds used in the paper.</p>
+      <p>This website is designed for static hosting. Upload <code>index.html</code>, <code>examples.html</code>, <code>simulator.html</code>, <code>mitigations.html</code>, <code>readiness.html</code>, <code>playbook.html</code>, <code>evidence.html</code>, <code>assets/</code>, and optionally <code>examples/</code> to a public repository. The classifier runs in the browser and mirrors the D-ACT proof-of-concept thresholds used in the paper.</p>
       <p>PCAP-only analysis can infer <code>C0</code>, <code>C1</code>, <code>C2</code>, and <code>C3</code>. Cloud logs are required for <code>C4</code>, serverless logs for <code>C5</code>, and AI usage logs for <code>C6</code>.</p>
     </section>
   </main>

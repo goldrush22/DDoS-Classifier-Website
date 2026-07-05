@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence & Log Collection Guide | D-ACT</title>
+  <meta name="description" content="Evidence and log collection guide for denial attack classification.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="hero advisory-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a class="active" href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Evidence & Log Collection Guide</h1>
+      <p class="subtitle">A plain-English guide to the evidence needed to classify denial attacks with D-ACT. PCAPs help identify source and rate conditions; cloud, serverless, and AI logs are needed for sustainability and AI-resource conditions.</p>
+      <div class="badges">
+        <span class="badge">PCAP</span>
+        <span class="badge">Flow logs</span>
+        <span class="badge">Cloud billing</span>
+        <span class="badge">Serverless invocation</span>
+        <span class="badge">AI usage</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="panel evidence-matrix-panel">
+      <h2>Which evidence identifies which attack?</h2>
+      <p class="helper">D-ACT can only infer conditions visible in the files supplied. A PCAP alone cannot prove cloud billing, serverless invocation, or AI token consumption.</p>
+      <div class="evidence-table-wrap">
+        <table class="evidence-table">
+          <thead><tr><th>Attack</th><th>Conditions</th><th>Minimum useful evidence</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td>DoS</td><td>C0, C1</td><td>PCAP or flow/request logs</td><td>Shows repeated denial activity from one dominant source.</td></tr>
+            <tr><td>DDoS</td><td>C0, C2</td><td>PCAP or flow/request logs</td><td>Shows repeated denial activity across multiple sources.</td></tr>
+            <tr><td>LDoS</td><td>C0, C1, C3</td><td>PCAP/flow logs with timestamps</td><td>Shows single-source low-rate, periodic, or stealthy degradation.</td></tr>
+            <tr><td>LDDoS</td><td>C0, C2, C3</td><td>PCAP/flow logs with timestamps</td><td>Shows distributed low-rate or periodic degradation.</td></tr>
+            <tr><td>EDoS_S</td><td>C0, C1, C4</td><td>Flow logs + cloud billing or scaling logs</td><td>Links one dominant source to cloud autoscaling or chargeable cloud use.</td></tr>
+            <tr><td>EDoS_D</td><td>C0, C2, C4</td><td>Flow logs + cloud billing or scaling logs</td><td>Links multiple sources to cloud autoscaling or chargeable cloud use.</td></tr>
+            <tr><td>DoW</td><td>C0, C1, C4, C5</td><td>Flow logs + cloud + serverless invocation logs</td><td>Shows one source triggering cloud-hosted serverless billing exposure.</td></tr>
+            <tr><td>DDoW</td><td>C0, C2, C4, C5</td><td>Flow logs + cloud + serverless invocation logs</td><td>Shows distributed serverless invocation or event-chain billing exposure.</td></tr>
+            <tr><td>DoA</td><td>C0, C6</td><td>AI usage logs, optionally with request logs</td><td>Shows AI token, model-call, tool-call, context, multimodal, or agent activity.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Evidence collection checklist</h2>
+      <div class="grid three evidence-cards">
+        <div class="evidence-card"><h3>Network evidence</h3><ul><li>PCAP or flow logs.</li><li>Source IP/account/client identifiers.</li><li>Timestamps and request rates.</li><li>Target hostname, endpoint, port, or route.</li></ul></div>
+        <div class="evidence-card"><h3>Cloud evidence</h3><ul><li>Autoscaling events.</li><li>Billing and cost exports.</li><li>Bandwidth, compute, storage, and managed-service usage.</li><li>Spend alerts and quota changes.</li></ul></div>
+        <div class="evidence-card"><h3>Serverless evidence</h3><ul><li>Function invocation counts.</li><li>Execution duration and memory allocation.</li><li>Cold starts and downstream calls.</li><li>Event-chain or trigger logs.</li></ul></div>
+        <div class="evidence-card"><h3>AI evidence</h3><ul><li>Input and output tokens.</li><li>Model calls and model class.</li><li>Context-window size.</li><li>Tool calls, retrieval calls, multimodal requests, and agent iterations.</li></ul></div>
+        <div class="evidence-card"><h3>Business evidence</h3><ul><li>Hourly online revenue estimate.</li><li>Customer impact notes.</li><li>Support tickets and outage times.</li><li>Unexpected invoice or quota exhaustion evidence.</li></ul></div>
+        <div class="evidence-card"><h3>Preservation notes</h3><ul><li>Preserve raw files before filtering.</li><li>Record timezone and collection time.</li><li>Keep hashes or filenames stable.</li><li>Do not overwrite logs during recovery.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>CSV field templates</h2>
+      <p class="helper">These are simple field suggestions that map well to D-ACT. The tool accepts CSV, JSON, and Excel where fields have similar names.</p>
+      <div class="template-grid">
+        <pre>flow/request log
+src_ip,timestamp,endpoint,status_code,api_key,method,user_agent</pre>
+        <pre>cloud billing log
+event_type,cost_before,cost_after,cost,service,region,timestamp</pre>
+        <pre>serverless log
+invocations,duration_ms,memory_mb,chained_events,function_name,timestamp</pre>
+        <pre>AI usage log
+input_tokens,output_tokens,model_calls,tool_calls,agent_iterations,context_tokens,modality</pre>
+      </div>
+    </section>
+  </main>
+  <footer>D-ACT Evidence & Log Collection Guide — educational collection guidance.</footer>
+</body>
+</html>
