@@ -89,8 +89,8 @@
         </label>
         <label>
           Estimated online-service profit per hour
+          <small class="field-helper field-helper-above">Example: online orders, QR-code ordering, booking forms, paid web service, or other revenue generated while the service is reachable.</small>
           <input id="victimOnlineHourlyProfit" type="number" min="0" step="1" placeholder="90" value="90">
-          <small class="field-helper">Example: online orders, QR-code ordering, booking forms, paid web service, or other revenue generated while the service is reachable.</small>
         </label>
         <div class="victim-profile-actions">
           <button id="applyVictimProfile" type="button">Generate denial attack exposure</button>
@@ -103,8 +103,6 @@
       </div>
 
       <div id="financialDashboard" class="financial-dashboard" aria-live="polite"></div>
-
-      <div id="victimExposureReport" class="victim-exposure-report" aria-live="polite" hidden></div>
     </section>
 
     <section class="simulator-layout">
@@ -163,9 +161,12 @@
           <ul id="sideImmediate"></ul>
         </div>
 
-        <div class="sim-side-section">
+        <div class="sim-side-section technical-controls-section">
           <h3>2. Technical controls</h3>
-          <p class="helper">Select a control to show its visual effect in the simulator.</p>
+          <div class="technical-control-callout">
+            <strong>Interactive controls:</strong> click any technical control below to modify the simulation. The visual flow and running exposure values will update to show the simulated defensive effect.
+          </div>
+          <p class="helper">Selected controls are educational simulations of defensive action. They do not change any real network or service.</p>
           <div id="sideTechnicalControls" class="technical-control-list"></div>
         </div>
 
@@ -175,6 +176,8 @@
         </div>
       </aside>
     </section>
+
+    <div id="victimExposureReport" class="panel victim-exposure-report" aria-live="polite" hidden></div>
 
     <section class="panel">
       <h2>Theory note</h2>
