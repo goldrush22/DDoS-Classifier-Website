@@ -790,6 +790,13 @@
     return `Simulated effect: reduces remaining ${target} to ${formatNumber(multiplier)}× (${formatNumber(reduction)}% reduction).`;
   }
 
+  function scrollBackToSimulation() {
+    const target = $('simScene') || document.querySelector('.simulator-main-panel');
+    if (target && typeof target.scrollIntoView === 'function') {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
   function renderMitigationPanel(attackKey) {
     const strategy = getMitigationStrategy(attackKey);
     $('sideMitigationTitle').textContent = strategy.title || `${attackKey} mitigation`;
@@ -820,6 +827,7 @@
           effect: button.dataset.effect || 'generic'
         };
         applyMitigationEffect();
+        window.requestAnimationFrame(() => scrollBackToSimulation());
       });
     });
   }

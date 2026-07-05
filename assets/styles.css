@@ -57,6 +57,14 @@ h3 { margin: 0 0 0.75rem; }
 }
 
 main { padding: 1.25rem; }
+body.simulator-page main {
+  max-width: 1440px;
+}
+
+body.simulator-page .hero-inner {
+  max-width: 1440px;
+}
+
 
 .panel {
   background: var(--panel);
@@ -511,9 +519,10 @@ a.mini {
   .sim-actions { justify-content: flex-start; }
 }
 .simulator-layout {
-  max-width: 1500px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -527,7 +536,7 @@ a.mini {
 }
 .simulator-header-line {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 250px) auto;
   justify-content: space-between;
   gap: 1rem;
   align-items: start;
@@ -537,6 +546,8 @@ a.mini {
   display: grid;
   gap: 0.35rem;
   align-self: start;
+  width: min(250px, 100%);
+  justify-self: end;
 }
 .simulator-inline-controls label {
   color: #263653;
@@ -546,14 +557,16 @@ a.mini {
 .simulator-inline-controls select {
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 0.72rem 0.85rem;
+  padding: 0.66rem 0.75rem;
   background: #fff;
   color: var(--text);
   font: inherit;
+  width: 100%;
+  max-width: 250px;
 }
 @media (max-width: 900px) {
   .simulator-header-line { grid-template-columns: 1fr; }
-  .simulator-inline-controls { width: 100%; }
+  .simulator-inline-controls { width: 100%; justify-self: stretch; }
 }
 .sim-condition-strip {
   display: grid;
@@ -1624,4 +1637,23 @@ a.mini {
 
 .victim-exposure-report {
   scroll-margin-top: 1.25rem;
+}
+
+
+/* Simulator width/dropdown/scroll refinement */
+body.simulator-page .simulator-main-panel,
+body.simulator-page .simulator-side-panel,
+body.simulator-page .victim-exposure-report {
+  width: 100%;
+}
+
+body.simulator-page .sim-scene {
+  min-height: 430px;
+}
+
+@media (max-width: 900px) {
+  body.simulator-page main,
+  body.simulator-page .hero-inner {
+    max-width: 1180px;
+  }
 }
