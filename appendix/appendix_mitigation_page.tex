@@ -1,0 +1,10 @@
+\subsection{D-ACT Mitigation Strategies Web Page}
+\label{app:dact_mitigation_page}
+
+The public D-ACT web artefact includes a dedicated mitigation strategies page, \texttt{mitigations.html}. This page provides defensive guidance for each primary denial attack class used by the C0--C6 taxonomy: DoS, DDoS, LDoS, LDDoS, \(\text{EDoS}_{S}\), \(\text{EDoS}_{D}\), DoW, DDoW, and DoA. The page also includes an \texttt{Unclassified} case to explain how users should interpret evidence that does not satisfy a complete taxonomy rule.
+
+The classifier page has been revised to clarify that D-ACT is designed to classify existing or suspected denial-attack evidence files. When a user uploads a file, the tool treats it as candidate denial evidence and attempts to classify the artefact against the C0--C6 taxonomy. Where the evidence does not satisfy a complete rule, the tool returns \texttt{Unclassified} rather than forcing an attack label.
+
+After a classification is produced, the results panel now displays a suggested mitigation strategy alongside the inferred attack class, identified conditions, absent conditions, inherited classes, extracted features, and raw JSON output. The mitigation panel provides immediate triage actions, technical controls, and monitoring or follow-up steps. A \texttt{Read more about denial attack mitigation strategies} button links the user to the dedicated mitigation page.
+
+The mitigation page is implemented as a static client-side artefact using \texttt{mitigations.html}, \texttt{assets/mitigations.js}, and \texttt{assets/mitigation-page.js}. No server-side code is required. The mitigation catalogue is loaded in the browser and can therefore be hosted through GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any standard static web host.

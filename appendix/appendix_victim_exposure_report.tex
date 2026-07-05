@@ -1,0 +1,8 @@
+\subsection{Victim Profile Exposure Report}
+\label{app:victim_exposure_report}
+
+The D-ACT Denial Attack Simulator includes a generated Victim Profile Exposure Report. The report is produced when the user enters a business or victim name, an ordinary profit figure, a profit period, and an estimated online-service profit per hour, then selects \emph{Generate denial attack exposure}. The tool then calculates simulated financial exposure across all nine denial attack classes: DoS, DDoS, LDoS, LDDoS, EDoS\(_S\), EDoS\(_D\), DoW, DDoW, and DoA.
+
+The report distinguishes between availability-denial exposure and sustainability-denial exposure. Availability attacks estimate potential lost online-service revenue caused by outage, lag, or degraded user access. Sustainability attacks additionally include interim metered-cost coefficients representing cloud scaling, serverless invocation, or AI inference consumption. The report ranks the nine attack classes by simulated hourly exposure, reports an eight-hour scenario, identifies the active taxonomy conditions, and lists the strongest associated technical mitigation control from the mitigation catalogue.
+
+The report is intended as an educational risk-communication artefact. It does not claim to estimate actual business loss or provider billing. Rather, it demonstrates how denial attacks can translate into financial exposure for a business that depends on an online service, such as a website, online ordering platform, booking form, QR-code menu, API, or AI-enabled service. The interim coefficients are transparent and can be replaced with empirically measured values in future research without changing the simulator structure.

@@ -1,0 +1,12 @@
+\subsection{Victim Financial Profile Simulator}
+\label{app:victim_financial_profile_simulator}
+
+The D-ACT Denial Attack Simulator includes an optional victim financial profile module. The module allows a user to enter a business or victim name, a profit amount, and a profit period restricted to daily, monthly, or yearly. The simulator normalises the entered figure into daily and per-minute profit so that sustainability-denial attacks can be presented in business-impact terms.
+
+The financial module is applied only to sustainability-oriented attack classes in the simulator: \(\text{EDoS}_{S}\), \(\text{EDoS}_{D}\), DoW, DDoW, and DoA. Availability-oriented classes such as DoS, DDoS, LDoS, and LDDoS are still visualised, but they do not receive a direct pay-per-use cost coefficient unless additional sustainability conditions are present. This reflects the distinction made in the paper between availability denial and economic or computational sustainability denial.
+
+The default cost coefficients are interim illustrative modelling values. They are not asserted as measured real-world loss rates. Rather, they demonstrate the economic logic of sustainability denial: where cloud, serverless, or AI platforms charge for resources used, denial activity may create financial harm even while a service remains technically available. The default coefficients are intentionally stored in the public JavaScript source file so they can be replaced by empirical values from later research.
+
+During the simulation, each visualised sustainability event increments a running cost exposure. The dashboard then reports the simulated exposure, the normalised victim profit per minute, and the exposure expressed as an equivalent amount of profit time. If the user selects a mitigation control from the side panel, the financial model applies a visible reduction multiplier to demonstrate how controls such as cost guardrails, throttling, serverless invocation caps, and AI token limits reduce sustainability exposure.
+
+The financial profile simulator is defensive and educational. It does not generate attack traffic, call cloud services, invoke serverless functions, consume AI APIs, or estimate an actual provider bill. Its purpose is to make the theory of sustainability denial more accessible by connecting the condition-based taxonomy to an illustrative business-impact model.
