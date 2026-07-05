@@ -1541,3 +1541,46 @@ a.mini {
     display: none !important;
   }
 }
+
+/* Simulator targeted refinements: report position and interactive mitigation clarity */
+.field-helper-above {
+  display: block;
+  margin: 0.35rem 0 0.55rem;
+}
+
+.technical-controls-section .technical-control-callout {
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(14, 165, 233, 0.08));
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  margin: 0.65rem 0 0.7rem;
+  color: var(--text, #0f172a);
+  line-height: 1.45;
+}
+
+.technical-control-button {
+  position: relative;
+}
+
+.technical-control-button::after {
+  content: "Click to apply to simulation";
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.72;
+  margin-top: 0.35rem;
+  letter-spacing: 0.01em;
+}
+
+.technical-control-button.selected::after {
+  content: "Applied to simulation";
+  opacity: 1;
+}
+
+.victim-exposure-report[hidden] {
+  display: none !important;
+}
+
+.victim-exposure-report {
+  scroll-margin-top: 1.25rem;
+}

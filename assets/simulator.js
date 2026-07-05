@@ -926,6 +926,12 @@
         victimProfile = getVictimProfileFromInputs();
         resetFinancialState();
         renderVictimExposureReport();
+        window.setTimeout(() => {
+          const reportPanel = $('victimExposureReport');
+          if (reportPanel && !reportPanel.hidden) {
+            reportPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 120);
       });
     }
 
