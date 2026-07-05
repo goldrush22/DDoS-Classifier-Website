@@ -159,3 +159,34 @@ node tools/validate_full_corpus_static.js
 ```
 
 The validator writes `FULL_CORPUS_STATIC_VALIDATION_RESULTS.json`.
+
+
+## Mitigation strategies page
+
+This repository includes `mitigations.html`, a static defensive guidance page for D-ACT classifications. The classifier page links to this page after producing a result and displays a class-specific mitigation summary alongside the output.
+
+## Denial Attack Simulator page
+
+This repository includes `simulator.html`, a purely visual educational simulator for the nine primary D-ACT denial taxonomy classes:
+
+- DoS
+- DDoS
+- LDoS
+- LDDoS
+- EDoS_S
+- EDoS_D
+- DoW
+- DDoW
+- DoA
+
+The simulator does not generate packets, replay packet captures, create requests, or interact with any network. It visually represents attacker-side sources, victim-side resources, condition sets C0-C6, packet/resource movement, cloud/serverless/AI resource domains, and mitigation controls.
+
+Each selected attack class displays the corresponding mitigation strategy from `assets/mitigations.js`. Technical controls in the side panel are interactive: selecting a control changes the simulation state to show blocking, throttling, endpoint hardening, traffic scrubbing, cost guardrails, serverless invocation controls, AI-resource controls, or monitoring overlays.
+
+The simulator page is intended as an educational and paper-supporting research artefact. It translates the taxonomy into a layperson-readable visual model and should not be described as an attack generator.
+
+## Victim financial profile simulator
+
+The Denial Attack Simulator now includes an optional victim financial profile module. Users can enter a business name, a profit amount, and a period limited to Daily, Monthly, or Yearly. Sustainability-oriented simulations (`EDoS_S`, `EDoS_D`, `DoW`, `DDoW`, and `DoA`) then display a running illustrative cost exposure and compare it with the victim's normalised profit per minute.
+
+The default coefficients are interim modelling values stored in `assets/simulator.js` under `FINANCIAL_MODEL`. They are intended for educational visualisation and can be replaced later with empirical research values.

@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "file": "simulator.html",
+      "term": "Victim financial profile simulator",
+      "present": true
+    },
+    {
+      "file": "simulator.html",
+      "term": "victimBusinessName",
+      "present": true
+    },
+    {
+      "file": "simulator.html",
+      "term": "victimProfitAmount",
+      "present": true
+    },
+    {
+      "file": "simulator.html",
+      "term": "victimProfitPeriod",
+      "present": true
+    },
+    {
+      "file": "simulator.html",
+      "term": "financialDashboard",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "FINANCIAL_MODEL",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "EDoS_S",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "DDoW",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "DoA",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "recordFinancialEvent",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "normaliseProfitToDaily",
+      "present": true
+    },
+    {
+      "file": "assets/simulator.js",
+      "term": "mitigationCostMultiplier",
+      "present": true
+    },
+    {
+      "file": "assets/styles.css",
+      "term": "victim-profile-panel",
+      "present": true
+    },
+    {
+      "file": "assets/styles.css",
+      "term": "financial-dashboard",
+      "present": true
+    },
+    {
+      "file": "assets/styles.css",
+      "term": "financial-impact",
+      "present": true
+    }
+  ]
+}
