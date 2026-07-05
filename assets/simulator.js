@@ -662,17 +662,27 @@
   }
 
   function initAttackSelect() {
-    const select = $('attackSelect');
-    select.innerHTML = Object.entries(ATTACKS).map(([key, attack]) => {
+    const options = Object.entries(ATTACKS).map(([key, attack]) => {
       return `<option value="${escapeHtml(key)}">${escapeHtml(attack.label)} — ${escapeHtml(attack.name)}</option>`;
     }).join('');
-    select.value = selectedAttack;
-    select.addEventListener('change', () => {
-      selectedAttack = select.value;
+
+    const selects = ['attackSelect', 'attackSelectInline']
+      .map((id) => $(id))
+      .filter(Boolean);
+
+    const updateSelection = (value) => {
+      selectedAttack = value;
+      selects.forEach((select) => { select.value = selectedAttack; });
       activeMitigation = null;
       resetFinancialState();
       renderSimulator();
       restartPacketFlow();
+    };
+
+    selects.forEach((select) => {
+      select.innerHTML = options;
+      select.value = selectedAttack;
+      select.addEventListener('change', () => updateSelection(select.value));
     });
   }
 
@@ -847,6 +857,10 @@
     $('simAttackTitle').textContent = `${attack.label} — ${attack.name}`;
     $('simAttackSubtitle').textContent = attack.summary;
     $('simClassPill').textContent = attack.label;
+    ['attackSelect', 'attackSelectInline'].forEach((id) => {
+      const select = $(id);
+      if (select) select.value = selectedAttack;
+    });
     $('attackSummary').innerHTML = `<strong>${escapeHtml(attack.label)}:</strong> ${escapeHtml(attack.summary)}`;
 
     renderConditionStrip(attack);
