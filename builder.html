@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build Your Own Attack | D-ACT</title>
+  <meta name="description" content="Visual sandbox for building and defending educational denial attack scenarios using the D-ACT C0-C6 taxonomy.">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/mitigations.js" defer></script>
+  <script src="assets/builder.js" defer></script>
+</head>
+<body class="builder-page">
+  <header class="hero builder-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a href="game.html">Denial Attack Game</a>
+        <a class="active" href="builder.html">Build Your Own Attack</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Build Your Own Denial Attack</h1>
+      <p class="subtitle">A purely visual sandbox for assembling attackers, victims, packet flows, C0-C6 conditions, concurrent attack lanes, and defensive controls. The builder does not generate packets or perform attacks; it teaches how denial attack classes are composed.</p>
+      <div class="badges">
+        <span class="badge">Visual only</span>
+        <span class="badge">Drag, drop, click</span>
+        <span class="badge">Concurrent attacks</span>
+        <span class="badge">C0-C6 taxonomy</span>
+        <span class="badge">Mitigation controls</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="builder-main">
+    <section class="panel builder-intro">
+      <div>
+        <h2>How to use this sandbox</h2>
+        <p class="helper">Start with an attack template or build from conditions. Click or drag conditions into the active lane. Add more lanes to model concurrent attacks against the same victim. Apply defensive controls to see the simulated flow weaken and the risk rating change.</p>
+      </div>
+      <div class="notice strong-notice"><strong>Safety note:</strong> this page is educational only. It does not create network traffic, replay PCAPs, invoke cloud services, or perform any operational attack action.</div>
+    </section>
+
+    <section class="builder-shell">
+      <aside class="builder-toolbox panel" aria-label="Attack builder toolbox">
+        <h2>Builder controls</h2>
+        <label class="builder-label">Victim / business name
+          <input id="builderVictimName" type="text" value="Mary's Cafe" maxlength="80">
+        </label>
+        <label class="builder-label">Attack template
+          <select id="builderTemplateSelect"></select>
+        </label>
+        <button id="addTemplateLane" type="button">Add selected attack lane</button>
+        <button id="addBlankLane" type="button" class="secondary">Add blank custom lane</button>
+        <button id="clearBuilder" type="button" class="secondary">Reset sandbox</button>
+
+        <div class="builder-divider"></div>
+        <h3>Active lane</h3>
+        <select id="activeLaneSelect"></select>
+        <p class="helper compact">The active lane receives clicked or dragged conditions and controls.</p>
+
+        <div class="builder-divider"></div>
+        <h3>Drag or click conditions</h3>
+        <div id="conditionPalette" class="builder-chip-grid" aria-label="Condition palette"></div>
+
+        <div class="builder-divider"></div>
+        <h3>Actors and infrastructure</h3>
+        <p class="helper compact">These visual elements can be toggled into the active lane. They help explain the route of the attack.</p>
+        <div id="actorPalette" class="builder-chip-grid"></div>
+
+        <div class="builder-divider"></div>
+        <h3>Defensive controls</h3>
+        <p class="helper compact">Click a control to defend the active lane. Dragging also works. Controls reduce simulated flow pressure.</p>
+        <div id="controlPalette" class="builder-control-list"></div>
+      </aside>
+
+      <section class="builder-workspace">
+        <section class="panel builder-status-panel">
+          <div class="builder-status-grid">
+            <div>
+              <h2>Scenario status</h2>
+              <p id="builderScenarioSummary" class="helper">No lanes yet.</p>
+            </div>
+            <div class="builder-score-card">
+              <span>Combined risk</span>
+              <strong id="combinedRisk">0%</strong>
+            </div>
+            <div class="builder-score-card">
+              <span>Active classes</span>
+              <strong id="activeClasses">None</strong>
+            </div>
+            <div class="builder-score-card">
+              <span>Controls active</span>
+              <strong id="controlsActiveCount">0</strong>
+            </div>
+          </div>
+          <div id="globalConditionStrip" class="builder-condition-strip" aria-label="Global condition strip"></div>
+        </section>
+
+        <section id="attackCanvasPanel" class="panel builder-canvas-panel">
+          <div class="builder-canvas-head">
+            <div>
+              <h2>Graphical attack canvas</h2>
+              <p class="helper">Each lane is one concurrent attack pathway aimed at the same victim. Packet/resource dots are symbolic only.</p>
+            </div>
+            <div class="builder-canvas-actions">
+              <button id="toggleAnimation" type="button" class="secondary">Pause animation</button>
+              <button id="exportScenario" type="button" class="secondary">Export scenario JSON</button>
+            </div>
+          </div>
+
+          <div id="builderCanvas" class="builder-canvas" aria-label="Attack builder canvas">
+            <div id="builderLaneStack" class="builder-lane-stack"></div>
+            <div id="builderVictimNode" class="builder-victim-node draggable-node" title="Drag the victim around the canvas">
+              <span class="victim-icon">🏪</span>
+              <strong id="builderVictimLabel">Mary's Cafe</strong>
+              <small>Victim service</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel builder-detail-panel">
+          <h2>Lane explanation and mitigation</h2>
+          <div id="laneExplanation" class="builder-explanation-grid"></div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <div id="builderToast" class="builder-toast" hidden></div>
+</body>
+</html>
