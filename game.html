@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D-ACT Denial Attack Game | Game-Based Learning</title>
+  <meta name="description" content="Game-based learning quiz for denial attack conditions, classifications and mitigation strategies.">
+  <link rel="stylesheet" href="assets/styles.css?v=game-20260706-1">
+  <script src="assets/game.js?v=game-20260706-1" defer></script>
+</head>
+<body class="game-page">
+  <header class="hero hero-compact game-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a class="active" href="game.html">Denial Attack Game</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Denial Attack Game</h1>
+      <p class="subtitle">A game-based learning challenge for the D-ACT C0-C6 denial taxonomy. Learn attack conditions, classifications, evidence clues and mitigation strategies under time pressure.</p>
+      <div class="badges">
+        <span class="badge">Educational only</span>
+        <span class="badge">100-question bank</span>
+        <span class="badge">No typing during play</span>
+        <span class="badge">Mobile friendly</span>
+        <span class="badge">Local personal best</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel game-tabs-panel">
+      <div class="game-tabs" role="tablist" aria-label="Denial Attack Game sections">
+        <button class="game-tab active" data-target="gameStartPanel" type="button">Play</button>
+        <button class="game-tab" data-target="gameHighScoresPanel" type="button">High Scores</button>
+        <button class="game-tab" data-target="gameHowPanel" type="button">How It Works</button>
+        <a class="button coffee-button" href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">Buy me a coffee</a>
+      </div>
+    </section>
+
+    <section id="gameStartPanel" class="game-tab-panel">
+      <section id="onboardingPanel" class="panel game-onboarding">
+        <div class="game-onboarding-copy">
+          <h2>Start a denial attack defence challenge</h2>
+          <p>The game uses simulated characters only. It does not teach attack execution. It tests whether you can recognise D-ACT conditions and select suitable defensive controls.</p>
+          <div id="questionBankSummary" class="notice"></div>
+          <div class="notice strong-notice"><strong>Static website note:</strong> this GitHub Pages version stores your personal best locally in your browser. Public accounts, OTP, Google/Apple sign-in and global high scores require a secure backend such as Firebase, Supabase or a server API.</div>
+        </div>
+        <div class="game-profile-card">
+          <label>Enter your name <span class="muted">(simulated attacker/player)</span>
+            <input id="attackerName" type="text" maxlength="60" value="Alex" placeholder="Alex">
+          </label>
+          <label>Enter victim name
+            <input id="victimName" type="text" maxlength="80" value="Mary's Cafe" placeholder="Mary's Cafe">
+          </label>
+          <label>What is your education level?
+            <select id="educationLevel">
+              <option>Small business owner / non-technical</option>
+              <option>High school</option>
+              <option>TAFE / vocational</option>
+              <option>Undergraduate</option>
+              <option>Postgraduate</option>
+              <option>Cybersecurity professional</option>
+            </select>
+          </label>
+          <label>How proficient are you in Cybersecurity?
+            <select id="cyberProficiency">
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+              <option>Expert</option>
+            </select>
+          </label>
+          <label class="inline-check"><input id="musicToggle" type="checkbox" checked> Low-volume quiz music</label>
+          <button id="startGame" type="button">Start game</button>
+          <p class="helper">Personal best on this device: <strong id="personalBest">0</strong></p>
+        </div>
+      </section>
+
+      <section id="gamePlayPanel" class="panel game-play" hidden>
+        <div class="game-hud">
+          <div class="hud-card"><span>Player</span><strong id="playerTag">Player</strong></div>
+          <div class="hud-card"><span>Victim</span><strong id="victimTag">Victim</strong></div>
+          <div class="hud-card"><span>Score</span><strong id="scoreNow">0</strong></div>
+          <div class="hud-card"><span>Round</span><strong id="roundNow">0</strong></div>
+          <div class="hud-card"><span>Best</span><strong id="personalBestGame">0</strong></div>
+          <button id="muteMusic" class="secondary" type="button">Mute music</button>
+        </div>
+
+        <div class="timer-shell" aria-label="Round timer">
+          <div id="timerBar" class="timer-bar"></div>
+          <span><strong id="timerText">30</strong>s</span>
+        </div>
+
+        <div id="gameCard" class="game-card">
+          <div class="game-card-header">
+            <div>
+              <p id="questionMeta" class="helper">Choose one answer.</p>
+              <h2 id="questionPrompt">Question appears here.</h2>
+            </div>
+            <div id="conditionStrip" class="game-condition-strip"></div>
+          </div>
+          <div id="answerGrid" class="answer-grid"></div>
+          <div class="actions">
+            <button id="submitAnswer" type="button" hidden>Submit selection</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="gameHighScoresPanel" class="game-tab-panel" hidden>
+      <section class="panel">
+        <h2>High Scores</h2>
+        <p class="helper">The static version records scores locally in the user’s browser. A public leaderboard needs a secure backend to prevent tampering and to support sign-in, OTP and global score storage.</p>
+        <ol id="highScoreList" class="high-score-list"></ol>
+        <div class="actions">
+          <button id="clearLocalScores" type="button" class="secondary">Clear local scores</button>
+        </div>
+        <div class="notice"><strong>Backend-ready design:</strong> the public leaderboard can later be connected to Firebase, Supabase or a custom API. Do not store passwords or OTP codes directly in static JavaScript.</div>
+      </section>
+    </section>
+
+    <section id="gameHowPanel" class="game-tab-panel" hidden>
+      <section class="panel game-how">
+        <h2>How the game teaches denial attacks</h2>
+        <div class="grid three">
+          <div class="mini-card"><h3>Conditions</h3><p>Players identify which C0-C6 conditions form each attack class.</p></div>
+          <div class="mini-card"><h3>Classification</h3><p>Players map evidence and condition sets to DoS, DDoS, EDoS, DoW, DDoW and DoA.</p></div>
+          <div class="mini-card"><h3>Mitigation</h3><p>Players choose defensive controls and receive links back to the mitigation catalogue when wrong.</p></div>
+        </div>
+        <p>The timer starts at 30 seconds and drops toward 10 seconds by round 10. When the timer reaches half of its starting value, the screen enters pressure mode with warning graphics and subtle shake effects.</p>
+      </section>
+    </section>
+  </main>
+
+  <div id="feedbackOverlay" class="feedback-overlay" hidden>
+    <div class="feedback-modal" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+      <h2 id="feedbackTitle">Round failed</h2>
+      <div id="feedbackBody"></div>
+      <div class="actions">
+        <a id="feedbackLink" class="button secondary" href="mitigations.html">Read more</a>
+        <button id="restartGame" type="button">Restart with shuffled questions</button>
+        <button id="closeFeedback" type="button" class="secondary">Try again</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
