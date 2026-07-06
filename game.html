@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>D-ACT Denial Attack Game | Game-Based Learning</title>
-  <meta name="description" content="Game-based learning quiz for denial attack conditions, classifications and mitigation strategies.">
-  <link rel="stylesheet" href="assets/styles.css?v=game-20260706-1">
-  <script src="assets/game.js?v=game-20260706-1" defer></script>
+  <title>D-ACT Denial Attack Quiz | Test Your Knowledge</title>
+  <meta name="description" content="A game-based learning quiz for denial attack conditions, classifications and mitigation strategies.">
+  <link rel="stylesheet" href="assets/styles.css?v=quiz-20260706-2">
+  <script src="assets/game.js?v=quiz-20260706-2" defer></script>
 </head>
 <body class="game-page">
   <header class="hero hero-compact game-hero">
@@ -16,15 +16,15 @@
         <a href="examples.html">Example Use Cases</a>
         <a href="simulator.html">Denial Attack Simulator</a>
         <a href="impact.html">Impact Scenario Lab</a>
-        <a class="active" href="game.html">Denial Attack Game</a>
+        <a class="active" href="game.html">Test Your Knowledge</a>
         <a href="mitigations.html">Mitigation Strategies</a>
         <a href="readiness.html">Readiness Assessment</a>
         <a href="playbook.html">Incident Response Playbook</a>
         <a href="evidence.html">Evidence & Logs Guide</a>
         <a href="README.md">Repository README</a>
       </nav>
-      <h1>Denial Attack Game</h1>
-      <p class="subtitle">A game-based learning challenge for the D-ACT C0-C6 denial taxonomy. Learn attack conditions, classifications, evidence clues and mitigation strategies under time pressure.</p>
+      <h1>Denial Attack Quiz</h1>
+      <p class="subtitle">Test your knowledge of the D-ACT C0-C6 denial taxonomy. Match attacks to conditions, identify evidence clues, and choose defensive controls in a fast, accessible quiz format.</p>
       <div class="badges">
         <span class="badge">Educational only</span>
         <span class="badge">100-question bank</span>
@@ -37,10 +37,10 @@
 
   <main>
     <section class="panel game-tabs-panel">
-      <div class="game-tabs" role="tablist" aria-label="Denial Attack Game sections">
-        <button class="game-tab active" data-target="gameStartPanel" type="button">Play</button>
+      <div class="game-tabs" role="tablist" aria-label="Denial Attack Quiz sections">
+        <button class="game-tab active" data-target="gameStartPanel" type="button">Play Quiz</button>
         <button class="game-tab" data-target="gameHighScoresPanel" type="button">High Scores</button>
-        <button class="game-tab" data-target="gameHowPanel" type="button">How It Works</button>
+        <button class="game-tab" data-target="gameHowPanel" type="button">How the Quiz Works</button>
         <a class="button coffee-button" href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">Buy me a coffee</a>
       </div>
     </section>
@@ -48,13 +48,30 @@
     <section id="gameStartPanel" class="game-tab-panel">
       <section id="onboardingPanel" class="panel game-onboarding">
         <div class="game-onboarding-copy">
-          <h2>Start a denial attack defence challenge</h2>
-          <p>The game uses simulated characters only. It does not teach attack execution. It tests whether you can recognise D-ACT conditions and select suitable defensive controls.</p>
+          <h2>Start the knowledge challenge</h2>
+          <p>The quiz uses simulated characters only. It does not teach attack execution. It tests whether you can recognise D-ACT conditions, classify denial attacks, and select suitable defensive controls.</p>
           <div id="questionBankSummary" class="notice"></div>
+          <div class="quiz-preview-grid" aria-label="Quiz learning areas">
+            <div class="quiz-preview-card">
+              <span class="quiz-preview-icon">C0-C6</span>
+              <strong>Match conditions</strong>
+              <p>Build the right condition set for each denial attack class.</p>
+            </div>
+            <div class="quiz-preview-card">
+              <span class="quiz-preview-icon">Shield</span>
+              <strong>Choose controls</strong>
+              <p>Pick practical mitigations for availability, sustainability and AI-targeted denial.</p>
+            </div>
+            <div class="quiz-preview-card">
+              <span class="quiz-preview-icon">Timer</span>
+              <strong>Beat the timer</strong>
+              <p>Rounds get faster, so you learn to recognise the patterns quickly.</p>
+            </div>
+          </div>
           <div class="notice strong-notice"><strong>Static website note:</strong> this GitHub Pages version stores your personal best locally in your browser. Public accounts, OTP, Google/Apple sign-in and global high scores require a secure backend such as Firebase, Supabase or a server API.</div>
         </div>
         <div class="game-profile-card">
-          <label>Enter your name <span class="muted">(simulated attacker/player)</span>
+          <label>Enter your name <span class="muted">(player)</span>
             <input id="attackerName" type="text" maxlength="60" value="Alex" placeholder="Alex">
           </label>
           <label>Enter victim name
@@ -78,8 +95,7 @@
               <option>Expert</option>
             </select>
           </label>
-          <label class="inline-check"><input id="musicToggle" type="checkbox" checked> Low-volume quiz music</label>
-          <button id="startGame" type="button">Start game</button>
+          <button id="startGame" type="button">Start quiz</button>
           <p class="helper">Personal best on this device: <strong id="personalBest">0</strong></p>
         </div>
       </section>
@@ -91,7 +107,6 @@
           <div class="hud-card"><span>Score</span><strong id="scoreNow">0</strong></div>
           <div class="hud-card"><span>Round</span><strong id="roundNow">0</strong></div>
           <div class="hud-card"><span>Best</span><strong id="personalBestGame">0</strong></div>
-          <button id="muteMusic" class="secondary" type="button">Mute music</button>
         </div>
 
         <div class="timer-shell" aria-label="Round timer">
@@ -117,8 +132,8 @@
 
     <section id="gameHighScoresPanel" class="game-tab-panel" hidden>
       <section class="panel">
-        <h2>High Scores</h2>
-        <p class="helper">The static version records scores locally in the user’s browser. A public leaderboard needs a secure backend to prevent tampering and to support sign-in, OTP and global score storage.</p>
+        <h2>Local High Scores</h2>
+        <p class="helper">This static version records scores locally in the user’s browser. A public leaderboard needs a secure backend to prevent tampering and to support sign-in, OTP and global score storage.</p>
         <ol id="highScoreList" class="high-score-list"></ol>
         <div class="actions">
           <button id="clearLocalScores" type="button" class="secondary">Clear local scores</button>
@@ -129,13 +144,13 @@
 
     <section id="gameHowPanel" class="game-tab-panel" hidden>
       <section class="panel game-how">
-        <h2>How the game teaches denial attacks</h2>
+        <h2>How Test Your Knowledge works</h2>
         <div class="grid three">
           <div class="mini-card"><h3>Conditions</h3><p>Players identify which C0-C6 conditions form each attack class.</p></div>
           <div class="mini-card"><h3>Classification</h3><p>Players map evidence and condition sets to DoS, DDoS, EDoS, DoW, DDoW and DoA.</p></div>
           <div class="mini-card"><h3>Mitigation</h3><p>Players choose defensive controls and receive links back to the mitigation catalogue when wrong.</p></div>
         </div>
-        <p>The timer starts at 30 seconds and drops toward 10 seconds by round 10. When the timer reaches half of its starting value, the screen enters pressure mode with warning graphics and subtle shake effects.</p>
+        <p>The timer starts at 30 seconds and drops toward 10 seconds by round 10. When the timer reaches half of its starting value, the interface enters pressure mode with warning graphics and subtle shake effects. There is no music or audio; the challenge remains visual and classroom-friendly.</p>
       </section>
     </section>
   </main>
