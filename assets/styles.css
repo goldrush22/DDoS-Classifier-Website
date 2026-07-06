@@ -1839,3 +1839,520 @@ body.builder-page {
   .route-node { min-width: 70px; padding: .45rem; }
   @keyframes builderPacketMove { from { transform: translateX(0) scale(.9); opacity: .15; } to { transform: translateX(540px) scale(1); opacity: .05; } }
 }
+
+
+/* Impact Scenario Lab */
+.impact-page .impact-main {
+  max-width: 1320px;
+}
+
+.impact-hero {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(94, 234, 212, 0.20), transparent 31%),
+    radial-gradient(circle at 82% 12%, rgba(248, 113, 113, 0.16), transparent 34%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #111827 100%);
+}
+
+.impact-intro,
+.impact-control-panel,
+.impact-graph-panel,
+.impact-data-panel,
+.impact-matrix-panel,
+.impact-constants-panel,
+.impact-equations-panel,
+.impact-reading-panel {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.impact-matrix-wrap {
+  overflow-x: auto;
+}
+
+.impact-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+  background: rgba(15, 23, 42, 0.03);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.impact-matrix th,
+.impact-matrix td {
+  padding: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  text-align: center;
+}
+
+.impact-matrix th:first-child {
+  text-align: left;
+}
+
+.impact-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.42rem 0.78rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.impact-pill.moderate {
+  background: rgba(245, 158, 11, 0.14);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.impact-pill.very-high {
+  background: rgba(239, 68, 68, 0.13);
+  color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.impact-pill.trivial {
+  background: rgba(34, 197, 94, 0.13);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.impact-control-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.impact-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.impact-speed-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 150px;
+}
+
+.impact-speed-label select {
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  background: white;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.9fr);
+  gap: 1.1rem;
+  align-items: stretch;
+}
+
+.impact-graph-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.impact-progress-card {
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(14, 165, 233, 0.10));
+  border-radius: 18px;
+  padding: 0.75rem 1rem;
+  min-width: 150px;
+  text-align: center;
+}
+
+.impact-progress-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.impact-progress-card strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.8rem;
+}
+
+.impact-chart-wrap {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(59, 130, 246, 0.06), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 22px;
+  padding: 0.8rem;
+  min-height: 450px;
+}
+
+#impactChart {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.impact-axis {
+  stroke: #0f172a;
+  stroke-width: 2.3;
+}
+
+#impactArrow path {
+  fill: #0f172a;
+}
+
+.impact-grid-line {
+  stroke: rgba(148, 163, 184, 0.30);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.impact-tick-label,
+.impact-axis-label {
+  fill: #475569;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.impact-series-line {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.impact-series-dot {
+  stroke: white;
+  stroke-width: 3;
+}
+
+.impact-series-label {
+  font-size: 15px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.90);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.series-small-sustainability { color: #dc2626; stroke: #dc2626; fill: #dc2626; }
+.series-small-availability { color: #f59e0b; stroke: #f59e0b; fill: #f59e0b; }
+.series-large-sustainability { color: #16a34a; stroke: #16a34a; fill: #16a34a; }
+.series-large-availability { color: #2563eb; stroke: #2563eb; fill: #2563eb; }
+
+.impact-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.impact-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.20);
+  background: rgba(248, 250, 252, 0.9);
+  border-radius: 14px;
+  padding: 0.65rem 0.75rem;
+}
+
+.impact-legend-item small {
+  margin-left: auto;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.impact-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  display: inline-block;
+  background: currentColor;
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
+}
+
+.impact-live-cards {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.impact-live-card {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-left: 6px solid currentColor;
+  border-radius: 18px;
+  padding: 0.85rem;
+  background: white;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+}
+
+.impact-card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+.impact-card-topline span {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.impact-card-topline strong {
+  font-size: 0.78rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.45rem;
+  background: rgba(15, 23, 42, 0.06);
+  color: currentColor;
+  white-space: nowrap;
+}
+
+.impact-card-money {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0.55rem 0 0.35rem;
+  color: currentColor;
+}
+
+.impact-card-metrics {
+  display: grid;
+  gap: 0.24rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.impact-card-metrics strong {
+  color: var(--text);
+}
+
+.impact-constants-grid,
+.impact-equation-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.impact-equation-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.impact-constant,
+.impact-equation-card {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 0.9rem;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.04);
+}
+
+.impact-constant span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.impact-constant strong {
+  display: block;
+  margin: 0.25rem 0;
+  font-size: 1.1rem;
+}
+
+.impact-constant small {
+  color: var(--muted);
+}
+
+.impact-equation-card h3 {
+  margin-top: 0;
+}
+
+.impact-equation-card code {
+  display: block;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 0.7rem;
+  border-radius: 14px;
+  overflow-x: auto;
+  font-weight: 700;
+}
+
+@media (max-width: 1050px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+  .impact-constants-grid,
+  .impact-equation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .impact-control-panel,
+  .impact-graph-header {
+    display: block;
+  }
+  .impact-actions {
+    margin-top: 0.8rem;
+  }
+  .impact-legend {
+    grid-template-columns: 1fr;
+  }
+  .impact-constants-grid,
+  .impact-equation-grid {
+    grid-template-columns: 1fr;
+  }
+  .impact-chart-wrap {
+    padding: 0.35rem;
+    min-height: 300px;
+  }
+  .impact-card-money {
+    font-size: 1.6rem;
+  }
+}
+
+/* Impact Scenario Lab readability update: PhD claim, mode toggle, and graph-label refinement */
+.impact-page .impact-main {
+  max-width: 1360px;
+}
+
+.impact-claim-panel,
+.impact-thesis-panel,
+.impact-conclusion-panel {
+  border: 1px solid rgba(37, 99, 235, 0.20);
+  background:
+    radial-gradient(circle at 8% 16%, rgba(37, 99, 235, 0.08), transparent 24%),
+    linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(255, 255, 255, 0.98));
+}
+
+.impact-section-heading {
+  max-width: 1050px;
+  margin-bottom: 0.9rem;
+}
+
+.impact-section-heading h2 {
+  margin-top: 0.2rem;
+}
+
+.impact-formula-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0.9rem;
+}
+
+.impact-formula-card {
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 18px;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+}
+
+.impact-formula-card h3 {
+  margin-top: 0;
+}
+
+.formula-list {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.formula-list code {
+  font-weight: 900;
+  color: #1d4ed8;
+  background: rgba(219, 234, 254, 0.70);
+  padding: 0.12rem 0.36rem;
+  border-radius: 8px;
+}
+
+.equation-display {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+  margin: 0.2rem 0 0.65rem;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 1.45rem;
+  font-weight: 850;
+  letter-spacing: 0.01em;
+}
+
+.latex-detail {
+  margin-top: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.30);
+  border-radius: 16px;
+  background: rgba(248, 250, 252, 0.95);
+  overflow: hidden;
+}
+
+.latex-detail summary {
+  cursor: pointer;
+  padding: 0.85rem 1rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.latex-detail pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.45;
+  font-size: 0.88rem;
+}
+
+.priority-context-panel {
+  border-color: rgba(14, 165, 233, 0.22);
+}
+
+.impact-actions #impactModeToggle {
+  min-width: 185px;
+}
+
+.impact-series-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  paint-order: stroke;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.impact-tick-label,
+.impact-axis-label {
+  font-weight: 650;
+}
+
+.impact-chart-wrap {
+  min-height: 475px;
+}
+
+.impact-conclusion-panel p {
+  color: #334155;
+  line-height: 1.65;
+  max-width: 1100px;
+}
+
+@media (max-width: 900px) {
+  .impact-formula-grid {
+    grid-template-columns: 1fr;
+  }
+  .impact-actions #impactModeToggle {
+    min-width: 0;
+    width: 100%;
+  }
+}
