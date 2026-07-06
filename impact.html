@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Denial Impact Scenario Lab | D-ACT</title>
+  <meta name="description" content="Interactive victim-asymmetric denial impact scenario showing how availability and sustainability attacks affect small and large organisations differently.">
+  <link rel="stylesheet" href="assets/styles.css?v=impact-20260706-2">
+  <script src="assets/impact-lab.js?v=impact-20260706-2" defer></script>
+</head>
+<body class="impact-page">
+  <header class="hero impact-hero">
+    <div class="hero-inner">
+      <nav class="site-nav" aria-label="D-ACT site navigation">
+        <a href="index.html">Classifier</a>
+        <a href="examples.html">Example Use Cases</a>
+        <a href="simulator.html">Denial Attack Simulator</a>
+        <a href="game.html">Denial Attack Game</a>
+        <a href="builder.html">Build Your Own Attack</a>
+        <a class="active" href="impact.html">Impact Scenario Lab</a>
+        <a href="mitigations.html">Mitigation Strategies</a>
+        <a href="readiness.html">Readiness Assessment</a>
+        <a href="playbook.html">Incident Response Playbook</a>
+        <a href="evidence.html">Evidence & Logs Guide</a>
+        <a href="README.md">Repository README</a>
+      </nav>
+      <h1>Denial Impact Scenario Lab</h1>
+      <p class="subtitle">A visual reproduction of Mark Dorsett's PhD victim-asymmetry claim: denial severity is not determined by attack mechanics alone, but by the interaction between the attack type and the victim's economic profile.</p>
+      <div class="badges">
+        <span class="badge">PhD scenario visualisation</span>
+        <span class="badge">Availability vs sustainability</span>
+        <span class="badge">Small vs large business</span>
+        <span class="badge">Relative / financial view</span>
+        <span class="badge">Exact thesis figures</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="impact-main">
+    <section class="panel impact-intro impact-claim-panel">
+      <div>
+        <p class="section-kicker">PhD claim visualisation</p>
+        <h2>Victim-asymmetric denial impact</h2>
+        <p class="helper">This page animates the hypothetical scenario presented in Mark Dorsett's PhD thesis. It is designed to make one central claim visible: the same denial mechanism can impose radically different economic harm depending on whether the victim is a small business or a large digital platform.</p>
+      </div>
+      <div class="notice strong-notice"><strong>Core argument:</strong> availability attacks and sustainability attacks are not uniformly severe. Sustainability attacks can be disproportionately harmful to small organisations because metered infrastructure costs accumulate against limited annual profit. Availability attacks can be disproportionately harmful to large organisations because service interruption can disrupt high-volume digital revenue at scale.</div>
+    </section>
+
+    <section class="panel impact-thesis-panel">
+      <div class="impact-section-heading">
+        <p class="section-kicker">Formal notation used in the thesis</p>
+        <h2>Relative impact formulation</h2>
+        <p class="helper">The visualisation below backs up Mark Dorsett's PhD claim by converting the thesis notation into a running graph. The graph can be viewed either as relative impact or as direct financial impact.</p>
+      </div>
+      <div class="impact-formula-grid">
+        <div class="impact-formula-card">
+          <h3>Attack--victim combinations</h3>
+          <ul class="formula-list">
+            <li><code>SA_sb</code> — Sustainability attack against a small business</li>
+            <li><code>AA_sb</code> — Availability attack against a small business</li>
+            <li><code>SA_lb</code> — Sustainability attack against a large business</li>
+            <li><code>AA_lb</code> — Availability attack against a large business</li>
+          </ul>
+        </div>
+        <div class="impact-formula-card">
+          <h3>Relative impact ratio</h3>
+          <div class="equation-display">I(t) = C(t) / P</div>
+          <p><code>C(t)</code> is cumulative cost imposed by the attack at time <code>t</code>. <code>P</code> is annual profit or baseline financial capacity. This allows comparison across organisations of different scale.</p>
+        </div>
+      </div>
+      <details class="latex-detail">
+        <summary>View LaTeX notation used for this visualisation</summary>
+        <pre><code>Let the following notation represent the four attack--victim combinations:
+
+\begin{align}
+SA_{sb} &amp;:&amp; \text{Sustainability attack against a small business} \\
+AA_{sb} &amp;:&amp; \text{Availability attack against a small business} \\
+SA_{lb} &amp;:&amp; \text{Sustainability attack against a large business} \\
+AA_{lb} &amp;:&amp; \text{Availability attack against a large business}
+\end{align}
+
+Let $I(t)$ denote the \emph{relative impact} experienced by a victim
+organisation at time $t$, defined as the ratio between the cumulative loss
+generated by the attack and the baseline economic capacity of the organisation:
+
+\begin{equation}
+I(t) = \frac{C(t)}{P}
+\end{equation}</code></pre>
+      </details>
+    </section>
+
+    <section class="panel impact-constants-panel priority-context-panel">
+      <div class="impact-section-heading">
+        <p class="section-kicker">Exact scenario figures used in PhD</p>
+        <h2>Scenario values used by the animation</h2>
+        <p class="helper">These values are taken from the thesis scenario shown in the supplied pages. The page uses them directly in both the relative-impact and financial-impact graph modes.</p>
+      </div>
+      <div class="impact-constants-grid">
+        <div class="impact-constant"><span>Small business annual profit</span><strong>AUD $90,000</strong></div>
+        <div class="impact-constant"><span>Large business annual profit</span><strong>AUD $50,000,000</strong></div>
+        <div class="impact-constant"><span>Sustainability attack cost</span><strong>AUD $15,000</strong><small>Two-week cloud-cost example</small></div>
+        <div class="impact-constant"><span>Large business availability loss</span><strong>AUD $3,600,000</strong><small>Availability outage scenario</small></div>
+        <div class="impact-constant"><span>Small business availability loss</span><strong>AUD $1,800</strong><small>Value used in Eq. (18), yielding 0.02</small></div>
+      </div>
+    </section>
+
+    <section class="panel impact-reading-panel priority-context-panel">
+      <div class="impact-section-heading">
+        <p class="section-kicker">What the animation shows</p>
+        <h2>The same attack cost does not mean the same victim impact</h2>
+      </div>
+      <div class="grid two">
+        <div>
+          <h3>Small businesses</h3>
+          <p>For a small business, the sustainability attack rises sharply because metered cloud, serverless, or AI costs are large relative to the organisation's annual profit. This is the core reason DoW, EDoS, DDoW, and AI-resource exhaustion can be financially dangerous even when the business is not a major digital platform.</p>
+        </div>
+        <div>
+          <h3>Large businesses</h3>
+          <p>For a large organisation, the same sustainability cost is absorbed by a far larger profit base. However, an availability outage can interrupt high-volume digital transactions, producing a much steeper relative impact trajectory.</p>
+        </div>
+      </div>
+      <div class="notice"><strong>Educational scope:</strong> this page is a visual reproduction of a hypothetical research scenario. It does not model every industry, provider, or organisation. It explains why denial-attack impact is victim-asymmetric.</div>
+    </section>
+
+    <section class="panel impact-matrix-panel">
+      <h2>Business-size impact matrix</h2>
+      <p class="helper">The thesis claim is summarised below: availability and sustainability attacks do not affect all victims equally.</p>
+      <div class="impact-matrix-wrap">
+        <table class="impact-matrix">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Small Business</th>
+              <th>Large Business</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Denial Attack</th>
+              <td><span class="impact-pill moderate">Moderate impact</span></td>
+              <td><span class="impact-pill very-high">Very high impact</span></td>
+            </tr>
+            <tr>
+              <th>Sustainability Attack</th>
+              <td><span class="impact-pill very-high">Very high impact</span></td>
+              <td><span class="impact-pill trivial">Trivial impact</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel impact-equations-panel">
+      <h2>Scenario calculations</h2>
+      <div class="impact-equation-grid">
+        <div class="impact-equation-card">
+          <h3>Small sustainability impact</h3>
+          <code>I_{SA_sb}=15000/90000=0.1667</code>
+          <p>Approximately 16.67% of annual profit.</p>
+        </div>
+        <div class="impact-equation-card">
+          <h3>Large sustainability impact</h3>
+          <code>I_{SA_lb}=15000/50000000=0.0003</code>
+          <p>Comparatively trivial economic effect.</p>
+        </div>
+        <div class="impact-equation-card">
+          <h3>Large availability impact</h3>
+          <code>I_{AA_lb}=3600000/50000000=0.072</code>
+          <p>Approximately 7.2% of annual profit.</p>
+        </div>
+        <div class="impact-equation-card">
+          <h3>Small availability impact</h3>
+          <code>I_{AA_sb}=1800/90000=0.02</code>
+          <p>Moderate relative impact under the scenario.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel impact-control-panel">
+      <div>
+        <h2>Real-time scenario controls</h2>
+        <p class="helper">The animation compresses the scenario into a short teaching sequence. Toggle between relative impact and financial impact to see both the proportional harm and the flat dollar losses.</p>
+      </div>
+      <div class="impact-actions">
+        <button id="impactStartPause" type="button">Pause</button>
+        <button id="impactReset" type="button" class="secondary">Reset</button>
+        <button id="impactModeToggle" type="button" class="secondary">Show financial impact</button>
+        <label class="impact-speed-label">Animation speed
+          <select id="impactSpeed">
+            <option value="0.5">Slow</option>
+            <option value="1" selected>Normal</option>
+            <option value="1.8">Fast</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="impact-grid">
+      <div class="panel impact-graph-panel">
+        <div class="impact-graph-header">
+          <div>
+            <p class="section-kicker" id="impactModeKicker">Relative impact mode</p>
+            <h2>Combined impact graph</h2>
+            <p class="helper" id="impactGraphExplanation">Four trajectories are plotted together using the relative impact ratio <code>I(t)=C(t)/P</code>. The values update as the scenario plays.</p>
+          </div>
+          <div class="impact-progress-card">
+            <span>Scenario progress</span>
+            <strong id="impactProgressText">0%</strong>
+          </div>
+        </div>
+
+        <div class="impact-chart-wrap" aria-label="Animated denial impact chart">
+          <svg id="impactChart" viewBox="0 0 940 520" role="img" aria-labelledby="impactChartTitle impactChartDesc">
+            <title id="impactChartTitle">Relative and financial impact of denial and sustainability attacks by victim scale</title>
+            <desc id="impactChartDesc">Animated line graph showing small business sustainability attack, small business availability attack, large business sustainability attack, and large business availability attack.</desc>
+            <defs>
+              <marker id="impactArrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L6,3 z"></path>
+              </marker>
+            </defs>
+            <g class="impact-grid-lines" id="impactGridLines"></g>
+            <line class="impact-axis" x1="90" y1="445" x2="860" y2="445" marker-end="url(#impactArrow)"></line>
+            <line class="impact-axis" x1="90" y1="445" x2="90" y2="55" marker-end="url(#impactArrow)"></line>
+            <text class="impact-axis-label" x="862" y="472">scenario progress</text>
+            <text class="impact-axis-label" id="impactYAxisLabel" x="35" y="55">relative impact</text>
+            <g id="impactLines"></g>
+            <g id="impactDots"></g>
+            <g id="impactLabels"></g>
+          </svg>
+        </div>
+        <div class="impact-legend" id="impactLegend"></div>
+      </div>
+
+      <aside class="panel impact-data-panel">
+        <h2>Live cumulative exposure</h2>
+        <p class="helper" id="impactDataExplanation">Each card shows the running cumulative cost, relative impact, and final scenario value.</p>
+        <div id="impactLiveCards" class="impact-live-cards"></div>
+      </aside>
+    </section>
+
+    <section class="panel impact-conclusion-panel">
+      <p class="section-kicker">Why this matters</p>
+      <h2>Denial severity depends on victim economics</h2>
+      <p>These examples reinforce the central claim developed throughout Mark Dorsett's PhD work: denial attacks should not be treated as a uniform threat category. The relative severity of a denial attack emerges from the interaction between the attack mechanism and the victim's economic profile.</p>
+      <p>Availability-oriented denial strategies primarily target operational disruption. Sustainability-oriented attacks target the economic foundations of service delivery by forcing metered infrastructure, serverless, or AI-resource consumption. Effective denial resilience must therefore consider both technical attack mechanics and financial exposure.</p>
+    </section>
+  </main>
+</body>
+</html>
