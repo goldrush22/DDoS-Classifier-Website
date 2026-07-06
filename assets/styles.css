@@ -1927,24 +1927,33 @@ body.builder-page {
 .impact-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .impact-speed-label {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-weight: 700;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 500;
   color: var(--text);
-  min-width: 150px;
+  min-width: 0;
+  white-space: nowrap;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 14px;
+  background: rgba(248, 250, 252, 0.92);
+  padding: 0.35rem 0.42rem 0.35rem 0.65rem;
+  min-height: 42px;
 }
 
 .impact-speed-label select {
   border: 1px solid rgba(148, 163, 184, 0.45);
-  border-radius: 12px;
-  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  padding: 0.48rem 0.6rem;
   background: white;
+  min-width: 118px;
 }
 
 .impact-grid {
@@ -2018,8 +2027,8 @@ body.builder-page {
 .impact-tick-label,
 .impact-axis-label {
   fill: #475569;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 400 !important;
 }
 
 .impact-series-line {
@@ -2035,11 +2044,11 @@ body.builder-page {
 }
 
 .impact-series-label {
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 400 !important;
   paint-order: stroke;
-  stroke: rgba(255, 255, 255, 0.90);
-  stroke-width: 4px;
+  stroke: rgba(255, 255, 255, 0.94);
+  stroke-width: 3px;
   stroke-linejoin: round;
 }
 
@@ -2070,6 +2079,18 @@ body.builder-page {
   color: var(--muted);
   font-weight: 700;
 }
+
+.impact-legend-item > span:not(.impact-legend-swatch) {
+  font-weight: 500;
+  color: var(--text);
+}
+
+#impactModeToggle[aria-pressed="true"] {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
 
 .impact-legend-swatch {
   width: 14px;
@@ -2200,7 +2221,12 @@ body.builder-page {
     display: block;
   }
   .impact-actions {
+    justify-content: flex-start;
     margin-top: 0.8rem;
+  }
+  .impact-speed-label {
+    width: 100%;
+    justify-content: space-between;
   }
   .impact-legend {
     grid-template-columns: 1fr;
