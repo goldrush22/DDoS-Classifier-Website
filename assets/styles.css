@@ -2218,141 +2218,161 @@ body.builder-page {
   }
 }
 
-/* Impact Scenario Lab readability update: PhD claim, mode toggle, and graph-label refinement */
-.impact-page .impact-main {
-  max-width: 1360px;
-}
-
-.impact-claim-panel,
-.impact-thesis-panel,
-.impact-conclusion-panel {
-  border: 1px solid rgba(37, 99, 235, 0.20);
+/* Denial Attack Quiz visual refresh */
+body.game-page {
   background:
-    radial-gradient(circle at 8% 16%, rgba(37, 99, 235, 0.08), transparent 24%),
-    linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(255, 255, 255, 0.98));
+    radial-gradient(circle at 12% 6%, rgba(53, 113, 232, 0.14), transparent 28%),
+    radial-gradient(circle at 92% 10%, rgba(94, 194, 144, 0.12), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 50%, #f7f9fd 100%);
 }
-
-.impact-section-heading {
-  max-width: 1050px;
-  margin-bottom: 0.9rem;
+.game-hero {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.16), transparent 24%),
+    linear-gradient(135deg, #102342 0%, #1f4f8c 54%, #214b6e 100%);
 }
-
-.impact-section-heading h2 {
-  margin-top: 0.2rem;
+.game-hero .subtitle {
+  max-width: 980px;
 }
-
-.impact-formula-grid {
+.game-tabs-panel {
+  background: rgba(255,255,255,.86);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(30, 47, 82, .08);
+}
+.game-tab, .coffee-button {
+  font-weight: 650;
+  box-shadow: 0 8px 18px rgba(21,35,62,.06);
+}
+.game-tab.active {
+  background: linear-gradient(135deg, #15396c, #2764a8);
+}
+.coffee-button {
+  background: linear-gradient(135deg, #ffe591, #ffd05b);
+}
+.game-onboarding-copy h2,
+.game-how h2,
+#gameHighScoresPanel h2 {
+  letter-spacing: -0.02em;
+}
+.quiz-preview-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 0.9rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+  margin: 1rem 0;
 }
-
-.impact-formula-card {
-  border: 1px solid rgba(148, 163, 184, 0.24);
+.quiz-preview-card {
+  background: linear-gradient(180deg, #ffffff, #f7faff);
+  border: 1px solid rgba(31, 57, 98, .10);
   border-radius: 18px;
-  background: #fff;
-  padding: 1rem;
-  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+  padding: .95rem;
+  box-shadow: 0 12px 26px rgba(25, 44, 78, .07);
 }
-
-.impact-formula-card h3 {
-  margin-top: 0;
+.quiz-preview-card strong {
+  display: block;
+  margin: .35rem 0 .2rem;
+  font-weight: 650;
+  color: #17213b;
 }
-
-.formula-list {
-  margin: 0.4rem 0 0;
-  padding-left: 1.1rem;
-  color: #334155;
-  line-height: 1.65;
-}
-
-.formula-list code {
-  font-weight: 900;
-  color: #1d4ed8;
-  background: rgba(219, 234, 254, 0.70);
-  padding: 0.12rem 0.36rem;
-  border-radius: 8px;
-}
-
-.equation-display {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 190px;
-  margin: 0.2rem 0 0.65rem;
-  padding: 0.75rem 1rem;
-  border-radius: 16px;
-  background: #0f172a;
-  color: #e2e8f0;
-  font-size: 1.45rem;
-  font-weight: 850;
-  letter-spacing: 0.01em;
-}
-
-.latex-detail {
-  margin-top: 0.9rem;
-  border: 1px solid rgba(148, 163, 184, 0.30);
-  border-radius: 16px;
-  background: rgba(248, 250, 252, 0.95);
-  overflow: hidden;
-}
-
-.latex-detail summary {
-  cursor: pointer;
-  padding: 0.85rem 1rem;
-  font-weight: 900;
-  color: #0f172a;
-}
-
-.latex-detail pre {
+.quiz-preview-card p {
   margin: 0;
-  padding: 1rem;
-  overflow-x: auto;
-  background: #0f172a;
-  color: #e2e8f0;
-  line-height: 1.45;
-  font-size: 0.88rem;
+  color: #5f6a7d;
+  font-size: .92rem;
 }
-
-.priority-context-panel {
-  border-color: rgba(14, 165, 233, 0.22);
-}
-
-.impact-actions #impactModeToggle {
-  min-width: 185px;
-}
-
-.impact-series-label {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  paint-order: stroke;
-  stroke: rgba(255, 255, 255, 0.92);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-}
-
-.impact-tick-label,
-.impact-axis-label {
+.quiz-preview-icon {
+  display: inline-grid;
+  place-items: center;
+  min-width: 48px;
+  height: 32px;
+  padding: 0 .55rem;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1c4f8f;
+  font-size: .82rem;
   font-weight: 650;
 }
-
-.impact-chart-wrap {
-  min-height: 475px;
+.game-profile-card {
+  border-radius: 24px;
+  border: 1px solid rgba(31,57,98,.10);
+  box-shadow: 0 18px 38px rgba(25,44,78,.08);
 }
-
-.impact-conclusion-panel p {
-  color: #334155;
-  line-height: 1.65;
-  max-width: 1100px;
+.game-profile-card label {
+  font-weight: 500;
+  color: #25304a;
 }
-
-@media (max-width: 900px) {
-  .impact-formula-grid {
+.game-profile-card input,
+.game-profile-card select {
+  font-weight: 400;
+  background: #fbfdff;
+  border-color: rgba(31,57,98,.16);
+}
+.game-profile-card input:focus,
+.game-profile-card select:focus,
+.answer-button:focus-visible,
+.game-tab:focus-visible {
+  outline: 3px solid rgba(44, 108, 220, .22);
+  outline-offset: 2px;
+}
+.game-hud {
+  grid-template-columns: repeat(5, minmax(110px, 1fr));
+}
+.hud-card {
+  background: linear-gradient(180deg, #162644, #0f1a31);
+  box-shadow: 0 12px 24px rgba(15,24,50,.14);
+}
+.hud-card strong {
+  font-weight: 650;
+}
+.timer-shell {
+  height: 28px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.06);
+}
+.timer-shell span,
+.timer-shell strong {
+  font-weight: 650;
+}
+.game-card {
+  border-radius: 28px;
+  border: 1px solid rgba(31,57,98,.10);
+  box-shadow: 0 24px 54px rgba(25,44,78,.10);
+}
+.game-card h2 {
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.game-condition-chip {
+  font-weight: 650;
+}
+.answer-button {
+  font-weight: 500;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border-color: rgba(31,57,98,.12);
+  box-shadow: 0 10px 22px rgba(25,44,78,.055);
+}
+.answer-button:hover,
+.answer-button.selected {
+  border-color: #3571d8;
+  background: #eef6ff;
+  box-shadow: 0 14px 28px rgba(25, 85, 172, .12);
+}
+.feedback-modal h2 {
+  font-weight: 650;
+}
+.high-score-list li strong {
+  font-weight: 650;
+}
+.game-how .mini-card h3 {
+  font-weight: 650;
+}
+body.game-pressure::before {
+  background: radial-gradient(circle, transparent 58%, rgba(222, 30, 53, .12));
+}
+body.game-pressure .game-card {
+  animation: dangerShake .28s infinite alternate;
+}
+@media (max-width: 760px) {
+  .quiz-preview-grid {
     grid-template-columns: 1fr;
   }
-  .impact-actions #impactModeToggle {
-    min-width: 0;
-    width: 100%;
+  .game-hud {
+    grid-template-columns: repeat(2, minmax(0,1fr));
   }
 }
