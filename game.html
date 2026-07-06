@@ -41,7 +41,7 @@
         <button class="game-tab active" data-target="gameStartPanel" type="button">Play Quiz</button>
         <button class="game-tab" data-target="gameHighScoresPanel" type="button">High Scores</button>
         <button class="game-tab" data-target="gameHowPanel" type="button">How the Quiz Works</button>
-        <a class="button coffee-button" href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">Buy me a coffee</a>
+        <a class="button coffee-button" href="https://buymeacoffee.com/markdorsett" target="_blank" rel="noopener">Buy me a coffee</a>
       </div>
     </section>
 
@@ -68,7 +68,6 @@
               <p>Rounds get faster, so you learn to recognise the patterns quickly.</p>
             </div>
           </div>
-          <div class="notice strong-notice"><strong>Static website note:</strong> this GitHub Pages version stores your personal best locally in your browser. Public accounts, OTP, Google/Apple sign-in and global high scores require a secure backend such as Firebase, Supabase or a server API.</div>
         </div>
         <div class="game-profile-card">
           <label>Enter your name <span class="muted">(player)</span>
@@ -133,12 +132,11 @@
     <section id="gameHighScoresPanel" class="game-tab-panel" hidden>
       <section class="panel">
         <h2>Local High Scores</h2>
-        <p class="helper">This static version records scores locally in the user’s browser. A public leaderboard needs a secure backend to prevent tampering and to support sign-in, OTP and global score storage.</p>
+        <p class="helper">Scores are saved on this device so learners can track their personal best and recent quiz attempts.</p>
         <ol id="highScoreList" class="high-score-list"></ol>
         <div class="actions">
           <button id="clearLocalScores" type="button" class="secondary">Clear local scores</button>
         </div>
-        <div class="notice"><strong>Backend-ready design:</strong> the public leaderboard can later be connected to Firebase, Supabase or a custom API. Do not store passwords or OTP codes directly in static JavaScript.</div>
       </section>
     </section>
 
