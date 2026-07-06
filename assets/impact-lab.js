@@ -2,7 +2,6 @@
   const scenario = {
     durationMs: 30000,
     maxRelative: 0.18,
-    maxFinancial: 3600000,
     series: [
       {
         id: 'small-sustainability',
@@ -13,9 +12,7 @@
         finalImpact: 15000 / 90000,
         rating: 'Very high impact',
         type: 'sustainability',
-        css: 'series-small-sustainability',
-        financialLabelOffset: -30,
-        relativeLabelOffset: -8
+        css: 'series-small-sustainability'
       },
       {
         id: 'small-availability',
@@ -26,9 +23,7 @@
         finalImpact: 1800 / 90000,
         rating: 'Moderate impact',
         type: 'availability',
-        css: 'series-small-availability',
-        financialLabelOffset: 38,
-        relativeLabelOffset: 18
+        css: 'series-small-availability'
       },
       {
         id: 'large-sustainability',
@@ -39,9 +34,7 @@
         finalImpact: 15000 / 50000000,
         rating: 'Trivial impact',
         type: 'sustainability',
-        css: 'series-large-sustainability',
-        financialLabelOffset: 8,
-        relativeLabelOffset: 30
+        css: 'series-large-sustainability'
       },
       {
         id: 'large-availability',
@@ -52,9 +45,7 @@
         finalImpact: 3600000 / 50000000,
         rating: 'Very high impact',
         type: 'availability',
-        css: 'series-large-availability',
-        financialLabelOffset: -8,
-        relativeLabelOffset: -8
+        css: 'series-large-availability'
       }
     ]
   };
@@ -63,18 +54,13 @@
     startPause: document.getElementById('impactStartPause'),
     reset: document.getElementById('impactReset'),
     speed: document.getElementById('impactSpeed'),
-    modeToggle: document.getElementById('impactModeToggle'),
     progressText: document.getElementById('impactProgressText'),
     gridLines: document.getElementById('impactGridLines'),
     lines: document.getElementById('impactLines'),
     dots: document.getElementById('impactDots'),
     labels: document.getElementById('impactLabels'),
     legend: document.getElementById('impactLegend'),
-    liveCards: document.getElementById('impactLiveCards'),
-    yAxisLabel: document.getElementById('impactYAxisLabel'),
-    modeKicker: document.getElementById('impactModeKicker'),
-    graphExplanation: document.getElementById('impactGraphExplanation'),
-    dataExplanation: document.getElementById('impactDataExplanation')
+    liveCards: document.getElementById('impactLiveCards')
   };
 
   const chart = {
@@ -88,7 +74,6 @@
 
   let progress = 0;
   let running = true;
-  let mode = 'relative';
   let lastFrame = null;
   let pathEls = new Map();
   let dotEls = new Map();
@@ -107,38 +92,13 @@
     return `${(value * 100).toFixed(value < 0.001 ? 3 : 2)}%`;
   }
 
-  function impactValue(series, progressValue) {
-    return mode === 'financial'
-      ? series.finalCost * progressValue
-      : series.finalImpact * progressValue;
-  }
-
-  function maxY() {
-    return mode === 'financial' ? scenario.maxFinancial : scenario.maxRelative;
-  }
-
-  function formatAxis(value) {
-    if (mode === 'financial') {
-      if (value >= 1000000) return `$${(value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1)}m`;
-      if (value >= 1000) return `$${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}k`;
-      return money(value);
-    }
-    return pct(value);
-  }
-
-  function formatModeValue(series, progressValue = 1) {
-    return mode === 'financial'
-      ? money(series.finalCost * progressValue)
-      : pct(series.finalImpact * progressValue);
-  }
-
   function x(progressValue) {
     return chart.left + (progressValue * chart.width);
   }
 
-  function y(value) {
-    const clamped = Math.min(maxY(), Math.max(0, value));
-    return chart.bottom - ((clamped / maxY()) * chart.height);
+  function y(relativeImpact) {
+    const clamped = Math.min(scenario.maxRelative, Math.max(0, relativeImpact));
+    return chart.bottom - ((clamped / scenario.maxRelative) * chart.height);
   }
 
   function makeSvg(name, attrs = {}) {
@@ -151,14 +111,12 @@
 
   function buildGrid() {
     els.gridLines.innerHTML = '';
-    const ticks = mode === 'financial'
-      ? [0, 600000, 1200000, 1800000, 2400000, 3000000, 3600000]
-      : [0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18];
+    const ticks = [0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18];
     ticks.forEach((tick) => {
       const yy = y(tick);
       const line = makeSvg('line', { x1: chart.left, y1: yy, x2: chart.right, y2: yy, class: 'impact-grid-line' });
-      const label = makeSvg('text', { x: mode === 'financial' ? 30 : 46, y: yy + 5, class: 'impact-tick-label' });
-      label.textContent = formatAxis(tick);
+      const label = makeSvg('text', { x: 46, y: yy + 5, class: 'impact-tick-label' });
+      label.textContent = pct(tick);
       els.gridLines.appendChild(line);
       els.gridLines.appendChild(label);
     });
@@ -179,7 +137,7 @@
       const path = makeSvg('path', { class: `impact-series-line ${series.css}`, d: '' });
       const dot = makeSvg('circle', { class: `impact-series-dot ${series.css}`, r: 7, cx: x(0), cy: y(0) });
       const label = makeSvg('text', { class: `impact-series-label ${series.css}`, x: x(0) + 12, y: y(0) - 8 });
-      label.textContent = `${series.shortLabel} (${formatModeValue(series)})`;
+      label.textContent = series.shortLabel;
       els.lines.appendChild(path);
       els.dots.appendChild(dot);
       els.labels.appendChild(label);
@@ -199,7 +157,6 @@
         <div class="impact-card-money" data-field="cost">${money(0)}</div>
         <div class="impact-card-metrics">
           <span>Relative impact: <strong data-field="impact">0%</strong></span>
-          <span>Graph value: <strong data-field="modeValue">0%</strong></span>
           <span>Final cost: <strong>${money(series.finalCost)}</strong></span>
           <span>Annual profit base: <strong>${money(series.annualProfit)}</strong></span>
         </div>
@@ -214,38 +171,19 @@
     const coords = [];
     for (let i = 0; i <= steps; i++) {
       const p = currentProgress * (i / steps);
-      coords.push(`${i === 0 ? 'M' : 'L'} ${x(p).toFixed(2)} ${y(impactValue(series, p)).toFixed(2)}`);
+      coords.push(`${i === 0 ? 'M' : 'L'} ${x(p).toFixed(2)} ${y(series.finalImpact * p).toFixed(2)}`);
     }
     return coords.join(' ');
-  }
-
-  function updateModeCopy() {
-    const financial = mode === 'financial';
-    if (els.modeToggle) els.modeToggle.textContent = financial ? 'Show relative impact' : 'Show financial impact';
-    if (els.yAxisLabel) els.yAxisLabel.textContent = financial ? 'financial impact ($)' : 'relative impact';
-    if (els.modeKicker) els.modeKicker.textContent = financial ? 'Financial impact mode' : 'Relative impact mode';
-    if (els.graphExplanation) {
-      els.graphExplanation.innerHTML = financial
-        ? 'Four trajectories are plotted as direct cumulative financial loss in Australian dollars. This shows the flat cost figures used in the scenario: $15,000, $1,800, $15,000, and $3,600,000.'
-        : 'Four trajectories are plotted together using the relative impact ratio <code>I(t)=C(t)/P</code>. This shows why the same dollar cost can be severe for a small business and trivial for a large organisation.';
-    }
-    if (els.dataExplanation) {
-      els.dataExplanation.textContent = financial
-        ? 'Each card shows running dollar loss and the equivalent relative impact against annual profit.'
-        : 'Each card shows the running cumulative cost, relative impact, and final scenario value.';
-    }
   }
 
   function update() {
     progress = Math.min(1, Math.max(0, progress));
     els.progressText.textContent = `${Math.round(progress * 100)}%`;
-    updateModeCopy();
     scenario.series.forEach((series) => {
       const currentCost = series.finalCost * progress;
       const currentImpact = series.finalImpact * progress;
-      const currentGraphValue = impactValue(series, progress);
       const xx = x(progress);
-      const yy = y(currentGraphValue);
+      const yy = y(currentImpact);
       const path = pathEls.get(series.id);
       const dot = dotEls.get(series.id);
       const label = labelEls.get(series.id);
@@ -256,26 +194,16 @@
         dot.setAttribute('cy', yy);
       }
       if (label) {
-        label.setAttribute('x', Math.min(xx + 12, chart.right - 230));
-        const labelOffset = mode === 'financial' ? (series.financialLabelOffset || -12) : (series.relativeLabelOffset || -12);
-        label.setAttribute('y', Math.max(chart.top + 18, Math.min(chart.bottom - 10, yy + labelOffset)));
-        label.textContent = `${series.shortLabel} (${formatModeValue(series, progress)})`;
+        label.setAttribute('x', Math.min(xx + 12, chart.right - 160));
+        label.setAttribute('y', Math.max(chart.top + 18, yy - 12));
       }
       if (card) {
         const costField = card.querySelector('[data-field="cost"]');
         const impactField = card.querySelector('[data-field="impact"]');
-        const modeValueField = card.querySelector('[data-field="modeValue"]');
         if (costField) costField.textContent = money(currentCost);
         if (impactField) impactField.textContent = pct(currentImpact);
-        if (modeValueField) modeValueField.textContent = mode === 'financial' ? money(currentCost) : pct(currentImpact);
       }
     });
-  }
-
-  function rebuildForMode() {
-    buildGrid();
-    buildSeries();
-    update();
   }
 
   function tick(timestamp) {
@@ -312,10 +240,6 @@
       running = false;
       if (els.startPause) els.startPause.textContent = 'Start';
       update();
-    });
-    els.modeToggle?.addEventListener('click', () => {
-      mode = mode === 'relative' ? 'financial' : 'relative';
-      rebuildForMode();
     });
   }
 

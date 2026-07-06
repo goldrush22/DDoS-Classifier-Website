@@ -1,6 +1,6 @@
 
-/* D-ACT Denial Attack Game
-   Static educational game for GitHub Pages. No network traffic is generated.
+/* D-ACT Denial Attack Quiz
+   Static educational quiz for GitHub Pages. No network traffic is generated.
    Public account/OTP/global leaderboard require a backend and are intentionally not implemented in static mode.
 */
 (function () {
@@ -3639,10 +3639,7 @@
     timer: null,
     selected: new Set(),
     running: false,
-    best: Number(localStorage.getItem(STORAGE_BEST) || '0'),
-    audioCtx: null,
-    musicNodes: null,
-    musicEnabled: true
+    best: Number(localStorage.getItem(STORAGE_BEST) || '0')
   };
 
   const $ = (id) => document.getElementById(id);
@@ -3692,34 +3689,11 @@
   }
 
   function startMusic() {
-    if (!$('musicToggle').checked) return;
-    try {
-      if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const ctx = state.audioCtx;
-      if (state.musicNodes) return;
-      const gain = ctx.createGain();
-      gain.gain.value = 0.018;
-      const osc = ctx.createOscillator();
-      osc.type = 'triangle';
-      osc.frequency.value = 164.81;
-      const lfo = ctx.createOscillator();
-      const lfoGain = ctx.createGain();
-      lfo.frequency.value = 2.2;
-      lfoGain.gain.value = 7;
-      lfo.connect(lfoGain);
-      lfoGain.connect(osc.frequency);
-      osc.connect(gain).connect(ctx.destination);
-      osc.start();
-      lfo.start();
-      state.musicNodes = { osc, lfo, gain };
-    } catch (e) {}
+    // Audio has been intentionally removed. The quiz is visual-only and suitable for classrooms, workplaces and public websites.
   }
 
   function stopMusic() {
-    if (state.musicNodes) {
-      try { state.musicNodes.osc.stop(); state.musicNodes.lfo.stop(); } catch (e) {}
-      state.musicNodes = null;
-    }
+    // Audio has been intentionally removed.
   }
 
   function updateHud() {
@@ -3805,7 +3779,7 @@
     document.body.classList.remove('game-pressure');
     saveScore();
     const correctText = q.correct.join(', ');
-    $('feedbackTitle').textContent = 'Round failed. Score reset.';
+    $('feedbackTitle').textContent = 'Incorrect answer. Score reset.';
     $('feedbackBody').innerHTML = `<p><strong>Correct answer:</strong> ${escapeHtml(correctText)}</p><p>${escapeHtml(q.explanation)}</p>`;
     $('feedbackLink').href = q.learnMore || 'index.html';
     $('feedbackLink').textContent = q.learnMore && q.learnMore.includes('mitigation') ? 'Read more about mitigation strategies' : 'Review the relevant D-ACT page';
@@ -3850,7 +3824,6 @@
     $('onboardingPanel').hidden = true;
     $('gamePlayPanel').hidden = false;
     $('feedbackOverlay').hidden = true;
-    startMusic();
     nextRound();
   }
 
@@ -3859,7 +3832,6 @@
     state.questions = shuffle(QUESTION_BANK);
     state.round = 0;
     state.score = 0;
-    startMusic();
     nextRound();
   }
 
@@ -3883,7 +3855,7 @@
     const table = $('highScoreList');
     if (!table) return;
     if (!scores.length) {
-      table.innerHTML = '<li>No local scores yet. Start a game to set the first score.</li>';
+      table.innerHTML = '<li>No local scores yet. Start the quiz to set the first score.</li>';
       return;
     }
     table.innerHTML = scores.map((s,i) => `<li><strong>#${i+1} ${escapeHtml(s.name)}</strong> — ${s.score} rounds <span>${new Date(s.at).toLocaleString()}</span></li>`).join('');
@@ -3919,7 +3891,6 @@
     $('submitAnswer').addEventListener('click', submitCurrentAnswer);
     $('restartGame').addEventListener('click', restartGame);
     $('closeFeedback').addEventListener('click', restartGame);
-    $('muteMusic').addEventListener('click', () => { stopMusic(); $('musicToggle').checked = false; });
     $('clearLocalScores').addEventListener('click', () => { localStorage.removeItem(STORAGE_SCORES); localStorage.removeItem(STORAGE_BEST); state.best = 0; renderHighScores(); updateHud(); });
   });
 })();
